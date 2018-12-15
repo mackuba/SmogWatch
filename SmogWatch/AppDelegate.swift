@@ -3,7 +3,7 @@
 //  SmogWatch
 //
 //  Created by Kuba Suder on 15.12.2018.
-//  Copyright © 2018 Kuba Suder. All rights reserved.
+//  Copyright © 2018 Kuba Suder. Licensed under WTFPL license.
 //
 
 import UIKit
