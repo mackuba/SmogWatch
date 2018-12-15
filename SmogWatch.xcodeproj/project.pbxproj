@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C2A46DE21C5523A0029E4BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */; };
+		8C2A46E021C5523A0029E4BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A46DF21C5523A0029E4BC /* ViewController.swift */; };
+		8C2A46E321C5523A0029E4BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46E121C5523A0029E4BC /* Main.storyboard */; };
+		8C2A46E521C5523B0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46E421C5523B0029E4BC /* Assets.xcassets */; };
+		8C2A46E821C5523B0029E4BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46E621C5523B0029E4BC /* LaunchScreen.storyboard */; };
+		8C2A46ED21C5523B0029E4BC /* SmogWatch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8C2A46EC21C5523B0029E4BC /* SmogWatch WatchKit App.app */; };
+		8C2A46F321C5523B0029E4BC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46F121C5523B0029E4BC /* Interface.storyboard */; };
+		8C2A46F521C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46F421C5523C0029E4BC /* Assets.xcassets */; };
+		8C2A46FC21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470021C5523C0029E4BC /* InterfaceController.swift */; };
+		8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */; };
+		8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470421C5523C0029E4BC /* NotificationController.swift */; };
+		8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470621C5523C0029E4BC /* ComplicationController.swift */; };
+		8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A470821C5523C0029E4BC /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C2A46EE21C5523B0029E4BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C2A46D221C5523A0029E4BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C2A46EB21C5523B0029E4BC;
+			remoteInfo = "SmogWatch WatchKit App";
+		};
+		8C2A46FD21C5523C0029E4BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C2A46D221C5523A0029E4BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C2A46FA21C5523C0029E4BC;
+			remoteInfo = "SmogWatch WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8C2A471121C5523C0029E4BC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8C2A46FC21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C2A471521C5523C0029E4BC /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8C2A46ED21C5523B0029E4BC /* SmogWatch WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8C2A46DA21C5523A0029E4BC /* SmogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8C2A46DF21C5523A0029E4BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8C2A46E221C5523A0029E4BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C2A46E421C5523B0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C2A46E721C5523B0029E4BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C2A46E921C5523B0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C2A46EC21C5523B0029E4BC /* SmogWatch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SmogWatch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2A46F221C5523B0029E4BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		8C2A46F421C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C2A46F621C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SmogWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2A470021C5523C0029E4BC /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		8C2A470421C5523C0029E4BC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8C2A470621C5523C0029E4BC /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		8C2A470821C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C2A470A21C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C2A46D721C5523A0029E4BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C2A46F821C5523C0029E4BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C2A46D121C5523A0029E4BC = {
+			isa = PBXGroup;
+			children = (
+				8C2A46DC21C5523A0029E4BC /* SmogWatch */,
+				8C2A46F021C5523B0029E4BC /* SmogWatch WatchKit App */,
+				8C2A46FF21C5523C0029E4BC /* SmogWatch WatchKit Extension */,
+				8C2A46DB21C5523A0029E4BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C2A46DB21C5523A0029E4BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C2A46DA21C5523A0029E4BC /* SmogWatch.app */,
+				8C2A46EC21C5523B0029E4BC /* SmogWatch WatchKit App.app */,
+				8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C2A46DC21C5523A0029E4BC /* SmogWatch */ = {
+			isa = PBXGroup;
+			children = (
+				8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */,
+				8C2A46DF21C5523A0029E4BC /* ViewController.swift */,
+				8C2A46E121C5523A0029E4BC /* Main.storyboard */,
+				8C2A46E421C5523B0029E4BC /* Assets.xcassets */,
+				8C2A46E621C5523B0029E4BC /* LaunchScreen.storyboard */,
+				8C2A46E921C5523B0029E4BC /* Info.plist */,
+			);
+			path = SmogWatch;
+			sourceTree = "<group>";
+		};
+		8C2A46F021C5523B0029E4BC /* SmogWatch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				8C2A46F121C5523B0029E4BC /* Interface.storyboard */,
+				8C2A46F421C5523C0029E4BC /* Assets.xcassets */,
+				8C2A46F621C5523C0029E4BC /* Info.plist */,
+			);
+			path = "SmogWatch WatchKit App";
+			sourceTree = "<group>";
+		};
+		8C2A46FF21C5523C0029E4BC /* SmogWatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
+				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
+				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
+				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
+				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
+				8C2A470A21C5523C0029E4BC /* Info.plist */,
+				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
+			);
+			path = "SmogWatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C2A46D921C5523A0029E4BC /* SmogWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C2A471621C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch" */;
+			buildPhases = (
+				8C2A46D621C5523A0029E4BC /* Sources */,
+				8C2A46D721C5523A0029E4BC /* Frameworks */,
+				8C2A46D821C5523A0029E4BC /* Resources */,
+				8C2A471521C5523C0029E4BC /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C2A46EF21C5523B0029E4BC /* PBXTargetDependency */,
+			);
+			name = SmogWatch;
+			productName = SmogWatch;
+			productReference = 8C2A46DA21C5523A0029E4BC /* SmogWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C2A46EB21C5523B0029E4BC /* SmogWatch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C2A471221C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch WatchKit App" */;
+			buildPhases = (
+				8C2A46EA21C5523B0029E4BC /* Resources */,
+				8C2A471121C5523C0029E4BC /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C2A46FE21C5523C0029E4BC /* PBXTargetDependency */,
+			);
+			name = "SmogWatch WatchKit App";
+			productName = "SmogWatch WatchKit App";
+			productReference = 8C2A46EC21C5523B0029E4BC /* SmogWatch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		8C2A46FA21C5523C0029E4BC /* SmogWatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C2A470E21C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch WatchKit Extension" */;
+			buildPhases = (
+				8C2A46F721C5523C0029E4BC /* Sources */,
+				8C2A46F821C5523C0029E4BC /* Frameworks */,
+				8C2A46F921C5523C0029E4BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SmogWatch WatchKit Extension";
+			productName = "SmogWatch WatchKit Extension";
+			productReference = 8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C2A46D221C5523A0029E4BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Kuba Suder";
+				TargetAttributes = {
+					8C2A46D921C5523A0029E4BC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					8C2A46EB21C5523B0029E4BC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					8C2A46FA21C5523C0029E4BC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 8C2A46D521C5523A0029E4BC /* Build configuration list for PBXProject "SmogWatch" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C2A46D121C5523A0029E4BC;
+			productRefGroup = 8C2A46DB21C5523A0029E4BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C2A46D921C5523A0029E4BC /* SmogWatch */,
+				8C2A46EB21C5523B0029E4BC /* SmogWatch WatchKit App */,
+				8C2A46FA21C5523C0029E4BC /* SmogWatch WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C2A46D821C5523A0029E4BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2A46E821C5523B0029E4BC /* LaunchScreen.storyboard in Resources */,
+				8C2A46E521C5523B0029E4BC /* Assets.xcassets in Resources */,
+				8C2A46E321C5523A0029E4BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C2A46EA21C5523B0029E4BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2A46F521C5523C0029E4BC /* Assets.xcassets in Resources */,
+				8C2A46F321C5523B0029E4BC /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C2A46F921C5523C0029E4BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C2A46D621C5523A0029E4BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2A46E021C5523A0029E4BC /* ViewController.swift in Sources */,
+				8C2A46DE21C5523A0029E4BC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C2A46F721C5523C0029E4BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */,
+				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
+				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
+				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C2A46EF21C5523B0029E4BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C2A46EB21C5523B0029E4BC /* SmogWatch WatchKit App */;
+			targetProxy = 8C2A46EE21C5523B0029E4BC /* PBXContainerItemProxy */;
+		};
+		8C2A46FE21C5523C0029E4BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C2A46FA21C5523C0029E4BC /* SmogWatch WatchKit Extension */;
+			targetProxy = 8C2A46FD21C5523C0029E4BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C2A46E121C5523A0029E4BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C2A46E221C5523A0029E4BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8C2A46E621C5523B0029E4BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C2A46E721C5523B0029E4BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8C2A46F121C5523B0029E4BC /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C2A46F221C5523B0029E4BC /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C2A470C21C5523C0029E4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8C2A470D21C5523C0029E4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C2A470F21C5523C0029E4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		8C2A471021C5523C0029E4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		8C2A471321C5523C0029E4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				IBSC_MODULE = SmogWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "SmogWatch WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		8C2A471421C5523C0029E4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				IBSC_MODULE = SmogWatch_WatchKit_Extension;
+				INFOPLIST_FILE = "SmogWatch WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		8C2A471721C5523C0029E4BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				INFOPLIST_FILE = SmogWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C2A471821C5523C0029E4BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KL585M628D;
+				INFOPLIST_FILE = SmogWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = eu.mackuba.SmogWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C2A46D521C5523A0029E4BC /* Build configuration list for PBXProject "SmogWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C2A470C21C5523C0029E4BC /* Debug */,
+				8C2A470D21C5523C0029E4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C2A470E21C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C2A470F21C5523C0029E4BC /* Debug */,
+				8C2A471021C5523C0029E4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C2A471221C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C2A471321C5523C0029E4BC /* Debug */,
+				8C2A471421C5523C0029E4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C2A471621C5523C0029E4BC /* Build configuration list for PBXNativeTarget "SmogWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C2A471721C5523C0029E4BC /* Debug */,
+				8C2A471821C5523C0029E4BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C2A46D221C5523A0029E4BC /* Project object */;
+}
