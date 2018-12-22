@@ -129,11 +129,11 @@
 			isa = PBXGroup;
 			children = (
 				8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */,
-				8C2A46DF21C5523A0029E4BC /* ViewController.swift */,
-				8C2A46E121C5523A0029E4BC /* Main.storyboard */,
 				8C2A46E421C5523B0029E4BC /* Assets.xcassets */,
-				8C2A46E621C5523B0029E4BC /* LaunchScreen.storyboard */,
 				8C2A46E921C5523B0029E4BC /* Info.plist */,
+				8C2A46E621C5523B0029E4BC /* LaunchScreen.storyboard */,
+				8C2A46E121C5523A0029E4BC /* Main.storyboard */,
+				8C2A46DF21C5523A0029E4BC /* ViewController.swift */,
 			);
 			path = SmogWatch;
 			sourceTree = "<group>";
@@ -141,9 +141,9 @@
 		8C2A46F021C5523B0029E4BC /* SmogWatch WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				8C2A46F121C5523B0029E4BC /* Interface.storyboard */,
 				8C2A46F421C5523C0029E4BC /* Assets.xcassets */,
 				8C2A46F621C5523C0029E4BC /* Info.plist */,
+				8C2A46F121C5523B0029E4BC /* Interface.storyboard */,
 			);
 			path = "SmogWatch WatchKit App";
 			sourceTree = "<group>";
@@ -151,12 +151,12 @@
 		8C2A46FF21C5523C0029E4BC /* SmogWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
-				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
-				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
-				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
 				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
+				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
+				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
+				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
+				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 			);
 			path = "SmogWatch WatchKit Extension";
