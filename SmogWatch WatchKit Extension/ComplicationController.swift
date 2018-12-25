@@ -8,49 +8,66 @@
 
 import ClockKit
 
+let MeasurementValidityTime = 3600 * 3
+
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    
+
+    let dataStore = DataStore()
+
+
     // MARK: - Timeline Configuration
-    
-    func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
-        handler([.forward, .backward])
+
+    func getSupportedTimeTravelDirections(
+        for complication: CLKComplication,
+        withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void)
+    {
+        handler([])
     }
-    
-    func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(nil)
-    }
-    
+
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        handler(nil)
+        handler(dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime)))
     }
-    
-    func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
-        handler(.showOnLockScreen)
-    }
-    
+
+
     // MARK: - Timeline Population
-    
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // Call the handler with the current timeline entry
-        handler(nil)
+
+    func getCurrentTimelineEntry(
+        for complication: CLKComplication,
+        withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void)
+    {
+        let entry: CLKComplicationTimelineEntry
+
+        if let date = dataStore.lastMeasurementDate, let level = dataStore.currentLevel {
+            let template = CLKComplicationTemplateModularSmallStackText()
+            template.line1TextProvider = CLKSimpleTextProvider(text: "PM10")
+            template.line2TextProvider = CLKSimpleTextProvider(text: String(Int(level.rounded())))
+            template.highlightLine2 = false
+
+            entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
+        } else {
+            let template = CLKComplicationTemplateModularSmallStackText()
+            template.line1TextProvider = CLKSimpleTextProvider(text: "PM10")
+            template.line2TextProvider = CLKSimpleTextProvider(text: "–")
+
+            entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+        }
+
+        handler(entry)
     }
-    
-    func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries prior to the given date
-        handler(nil)
-    }
-    
-    func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
-        // Call the handler with the timeline entries after to the given date
-        handler(nil)
-    }
-    
+
+
     // MARK: - Placeholder Templates
-    
-    func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
+
+    func getLocalizableSampleTemplate(
+        for complication: CLKComplication,
+        withHandler handler: @escaping (CLKComplicationTemplate?) -> Void)
+    {
         // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+        let template = CLKComplicationTemplateModularSmallStackText()
+        template.line1TextProvider = CLKSimpleTextProvider(text: "PM10")
+        template.line2TextProvider = CLKSimpleTextProvider(text: "50")
+
+        handler(template)
     }
-    
 }

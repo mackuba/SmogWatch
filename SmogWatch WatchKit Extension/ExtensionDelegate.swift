@@ -10,8 +10,20 @@ import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
+    let loader = KrakowPiosDataLoader()
+
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
+        let server = CLKComplicationServer.sharedInstance()
+        if let comp = server.activeComplications?.first {
+            server.reloadTimeline(for: comp)
+        }
+
+        WKExtension.shared().scheduleBackgroundRefresh(
+            withPreferredDate: Date(),
+            userInfo: nil,
+            scheduledCompletion: { _ in }
+        )
     }
 
     func applicationDidBecomeActive() {
@@ -29,8 +41,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                // Be sure to complete the background task once you’re done.
-                backgroundTask.setTaskCompletedWithSnapshot(false)
+                KrakowPiosDataLoader().fetchData {
+                    WKExtension.shared().scheduleBackgroundRefresh(
+                        withPreferredDate: Date().addingTimeInterval(3600),
+                        userInfo: nil,
+                        scheduledCompletion: { _ in }
+                    )
+
+                    // Be sure to complete the background task once you’re done.
+                    backgroundTask.setTaskCompletedWithSnapshot(false)
+                }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)

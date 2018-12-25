@@ -21,6 +21,8 @@
 		8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470421C5523C0029E4BC /* NotificationController.swift */; };
 		8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470621C5523C0029E4BC /* ComplicationController.swift */; };
 		8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A470821C5523C0029E4BC /* Assets.xcassets */; };
+		8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472321CEEAAA0029E4BC /* DataStore.swift */; };
+		8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		8C2A470821C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2A470A21C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		8C2A472321CEEAAA0029E4BC /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +157,11 @@
 			children = (
 				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
 				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
+				8C2A472321CEEAAA0029E4BC /* DataStore.swift */,
 				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
 				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
+				8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */,
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 			);
@@ -306,6 +312,8 @@
 				8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */,
 				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
 				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
+				8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */,
+				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
