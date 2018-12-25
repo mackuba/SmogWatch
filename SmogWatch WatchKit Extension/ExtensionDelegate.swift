@@ -13,17 +13,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let loader = KrakowPiosDataLoader()
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
-        let server = CLKComplicationServer.sharedInstance()
-        if let comp = server.activeComplications?.first {
-            server.reloadTimeline(for: comp)
-        }
-
-        WKExtension.shared().scheduleBackgroundRefresh(
-            withPreferredDate: Date(),
-            userInfo: nil,
-            scheduledCompletion: { _ in }
-        )
+        self.scheduleBackgroundRefresh(in: 0)
     }
 
     func applicationDidBecomeActive() {
@@ -41,12 +31,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                KrakowPiosDataLoader().fetchData {
-                    WKExtension.shared().scheduleBackgroundRefresh(
-                        withPreferredDate: Date().addingTimeInterval(3600),
-                        userInfo: nil,
-                        scheduledCompletion: { _ in }
-                    )
+                KrakowPiosDataLoader().fetchData { success in
+                    if success {
+                        self.reloadActiveComplications()
+                    }
+
+                    self.scheduleBackgroundRefresh(in: 3600)
 
                     // Be sure to complete the background task once you’re done.
                     backgroundTask.setTaskCompletedWithSnapshot(false)
@@ -73,4 +63,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+    func reloadActiveComplications() {
+        let server = CLKComplicationServer.sharedInstance()
+
+        for complication in server.activeComplications ?? [] {
+            server.reloadTimeline(for: complication)
+        }
+    }
+
+    func scheduleBackgroundRefresh(in seconds: TimeInterval) {
+        WKExtension.shared().scheduleBackgroundRefresh(
+            withPreferredDate: Date().addingTimeInterval(seconds),
+            userInfo: nil,
+            scheduledCompletion: { _ in }
+        )
+    }
 }
