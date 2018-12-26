@@ -7,11 +7,49 @@
 //
 
 import Foundation
-import ClockKit
 
 private let DataURL = "http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"
 
 class KrakowPiosDataLoader {
+    struct DataPoint: Decodable {
+        let date: Date
+        let value: Double
+
+        struct InvalidValueError: Error {}
+
+        init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+
+            if let timestamp = try Int(container.decode(String.self)) {
+                self.date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+            } else {
+                throw InvalidValueError()
+            }
+
+            if let value = try Double(container.decode(String.self)) {
+                self.value = value
+            } else {
+                throw InvalidValueError()
+            }
+        }
+    }
+
+    struct DataSeries: Decodable {
+        enum CodingKeys: String, CodingKey {
+            case points = "data"
+        }
+
+        let points: [DataPoint]
+    }
+
+    struct ResponseData: Decodable {
+        let series: [DataSeries]
+    }
+
+    struct Response: Decodable {
+        let data: ResponseData
+    }
+
     let dateFormatter: DateFormatter = {
         let d = DateFormatter()
         d.locale = Locale(identifier: "en_US_POSIX")
@@ -37,7 +75,7 @@ class KrakowPiosDataLoader {
         return "query=\(json)"
     }
 
-    func fetchData(completion: @escaping (Bool) -> ()) {
+    func fetchData(_ completion: @escaping (Bool) -> ()) {
         var request = URLRequest(url: URL(string: DataURL)!)
         request.httpBody = queryString().data(using: .utf8)!
         request.httpMethod = "POST"
@@ -46,24 +84,13 @@ class KrakowPiosDataLoader {
             var success = false
 
             if let data = data {
-                if let jo = try? JSONSerialization.jsonObject(with: data, options: []) {
-                    if let json = jo as? [String:Any] {
-                        if let data = json["data"] as? [String:Any] {
-                            if let series = data["series"] as? [[String:Any]] {
-                                if let s1 = series.first {
-                                    if let sd = s1["data"] as? [[String]] {
-                                        if let sdlast = sd.last {
-                                            let date = Date(timeIntervalSince1970: Double(sdlast[0])!)
-                                            let val = Double(sdlast[1])
+                if let response = try? JSONDecoder().decode(Response.self, from: data) {
+                    if let series = response.data.series.first {
+                        if let point = series.points.last {
+                            self.dataStore.currentLevel = point.value
+                            self.dataStore.lastMeasurementDate = point.date
 
-                                            self.dataStore.currentLevel = val
-                                            self.dataStore.lastMeasurementDate = date
-
-                                            success = true
-                                        }
-                                    }
-                                }
-                            }
+                            success = true
                         }
                     }
                 }
