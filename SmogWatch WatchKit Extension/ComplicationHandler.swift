@@ -36,6 +36,10 @@ enum ComplicationHandlers {
             return CircularSmall()
         case .modularSmall:
             return ModularSmall()
+        case .utilitarianSmallFlat:
+            return UtilitarianSmallFlat()
+        case .utilitarianLarge:
+            return UtilitarianLarge()
         default:
             preconditionFailure("Complication family not supported")
         }
@@ -83,6 +87,64 @@ enum ComplicationHandlers {
             let template = CLKComplicationTemplateModularSmallStackText()
             template.line1TextProvider = CLKSimpleTextProvider(text: PMTitleText, shortText: PMShortTitleText)
             template.line2TextProvider = CLKSimpleTextProvider(text: SampleValueText)
+            return template
+        }
+    }
+
+    class UtilitarianSmallFlat: ComplicationHandler {
+        func template(for value: Double) -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianSmallFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10: \(integerValue(value))",
+                shortText: "PM: \(integerValue(value))"
+            )
+            return template
+        }
+
+        func templateForNoValue() -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianSmallFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10: \(PlaceholderText)",
+                shortText: "PM: \(PlaceholderText)"
+            )
+            return template
+        }
+
+        func templateForSampleValue() -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianSmallFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10: \(SampleValueText)",
+                shortText: "PM: \(SampleValueText)"
+            )
+            return template
+        }
+    }
+
+    class UtilitarianLarge: ComplicationHandler {
+        func template(for value: Double) -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianLargeFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10 Level: \(integerValue(value))",
+                shortText: "PM10: \(integerValue(value))"
+            )
+            return template
+        }
+
+        func templateForNoValue() -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianLargeFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10 Level: No data",
+                shortText: "PM10: No data"
+            )
+            return template
+        }
+
+        func templateForSampleValue() -> CLKComplicationTemplate {
+            let template = CLKComplicationTemplateUtilitarianLargeFlat()
+            template.textProvider = CLKSimpleTextProvider(
+                text: "PM10 Level: \(SampleValueText)",
+                shortText: "PM10: \(SampleValueText)"
+            )
             return template
         }
     }
