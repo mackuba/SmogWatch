@@ -16,13 +16,13 @@
 		8C2A46F321C5523B0029E4BC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46F121C5523B0029E4BC /* Interface.storyboard */; };
 		8C2A46F521C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46F421C5523C0029E4BC /* Assets.xcassets */; };
 		8C2A46FC21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470021C5523C0029E4BC /* InterfaceController.swift */; };
-		8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */; };
-		8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470421C5523C0029E4BC /* NotificationController.swift */; };
-		8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470621C5523C0029E4BC /* ComplicationController.swift */; };
 		8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A470821C5523C0029E4BC /* Assets.xcassets */; };
-		8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472321CEEAAA0029E4BC /* DataStore.swift */; };
-		8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */; };
+		8CDC73BC21D5114700D170D0 /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC73BB21D5114700D170D0 /* DataStore.m */; };
+		8CDC740F21D53A0200D170D0 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC740E21D53A0200D170D0 /* NotificationController.m */; };
+		8CDC741221D53A5700D170D0 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741121D53A5700D170D0 /* ComplicationController.m */; };
+		8CDC741521D53EE000D170D0 /* ExtensionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741421D53EE000D170D0 /* ExtensionDelegate.m */; };
+		8CDC741821D53F2200D170D0 /* KrakowPiosDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741721D53F2200D170D0 /* KrakowPiosDataLoader.m */; };
+		8CDC741B21D5605400D170D0 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741A21D5605400D170D0 /* InterfaceController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,15 +80,21 @@
 		8C2A46F421C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2A46F621C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2A46FB21C5523C0029E4BC /* SmogWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SmogWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C2A470021C5523C0029E4BC /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		8C2A470421C5523C0029E4BC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		8C2A470621C5523C0029E4BC /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		8C2A470821C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2A470A21C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		8C2A472321CEEAAA0029E4BC /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
+		8CDC73BA21D5114700D170D0 /* DataStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
+		8CDC73BB21D5114700D170D0 /* DataStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataStore.m; sourceTree = "<group>"; };
+		8CDC740D21D53A0200D170D0 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		8CDC740E21D53A0200D170D0 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		8CDC741021D53A5700D170D0 /* ComplicationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplicationController.h; sourceTree = "<group>"; };
+		8CDC741121D53A5700D170D0 /* ComplicationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplicationController.m; sourceTree = "<group>"; };
+		8CDC741321D53EE000D170D0 /* ExtensionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtensionDelegate.h; sourceTree = "<group>"; };
+		8CDC741421D53EE000D170D0 /* ExtensionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExtensionDelegate.m; sourceTree = "<group>"; };
+		8CDC741621D53F2200D170D0 /* KrakowPiosDataLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KrakowPiosDataLoader.h; sourceTree = "<group>"; };
+		8CDC741721D53F2200D170D0 /* KrakowPiosDataLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KrakowPiosDataLoader.m; sourceTree = "<group>"; };
+		8CDC741921D5605400D170D0 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		8CDC741A21D5605400D170D0 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,13 +162,19 @@
 			isa = PBXGroup;
 			children = (
 				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
-				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
-				8C2A472321CEEAAA0029E4BC /* DataStore.swift */,
-				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
+				8CDC741021D53A5700D170D0 /* ComplicationController.h */,
+				8CDC741121D53A5700D170D0 /* ComplicationController.m */,
+				8CDC73BA21D5114700D170D0 /* DataStore.h */,
+				8CDC73BB21D5114700D170D0 /* DataStore.m */,
+				8CDC741321D53EE000D170D0 /* ExtensionDelegate.h */,
+				8CDC741421D53EE000D170D0 /* ExtensionDelegate.m */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
-				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
-				8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */,
-				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
+				8CDC741921D5605400D170D0 /* InterfaceController.h */,
+				8CDC741A21D5605400D170D0 /* InterfaceController.m */,
+				8CDC741621D53F2200D170D0 /* KrakowPiosDataLoader.h */,
+				8CDC741721D53F2200D170D0 /* KrakowPiosDataLoader.m */,
+				8CDC740D21D53A0200D170D0 /* NotificationController.h */,
+				8CDC740E21D53A0200D170D0 /* NotificationController.m */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 			);
 			path = "SmogWatch WatchKit Extension";
@@ -242,6 +254,7 @@
 					};
 					8C2A46FA21C5523C0029E4BC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -309,12 +322,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */,
-				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
-				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
-				8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */,
-				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
-				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
+				8CDC73BC21D5114700D170D0 /* DataStore.m in Sources */,
+				8CDC741221D53A5700D170D0 /* ComplicationController.m in Sources */,
+				8CDC741521D53EE000D170D0 /* ExtensionDelegate.m in Sources */,
+				8CDC741821D53F2200D170D0 /* KrakowPiosDataLoader.m in Sources */,
+				8CDC740F21D53A0200D170D0 /* NotificationController.m in Sources */,
+				8CDC741B21D5605400D170D0 /* InterfaceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;
 				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
@@ -503,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;
 				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
@@ -524,7 +539,6 @@
 		8C2A471321C5523C0029E4BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;
@@ -543,7 +557,6 @@
 		8C2A471421C5523C0029E4BC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;

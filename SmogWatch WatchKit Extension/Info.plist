@@ -21,10 +21,9 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CLKComplicationPrincipalClass</key>
-	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
+	<string>ComplicationController</string>
 	<key>CLKComplicationSupportedFamilies</key>
 	<array>
-		<string>CLKComplicationFamilyCircularSmall</string>
 		<string>CLKComplicationFamilyModularSmall</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
@@ -49,6 +48,6 @@
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>WKExtensionDelegateClassName</key>
-	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+	<string>ExtensionDelegate</string>
 </dict>
 </plist>
