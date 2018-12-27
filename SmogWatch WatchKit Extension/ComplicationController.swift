@@ -9,10 +9,6 @@
 import ClockKit
 
 private let MeasurementValidityTime = 3600 * 3
-private let PMTitleText = "PM10"
-private let PMShortTitleText = "PM"
-private let PlaceholderText = "–"
-private let SampleValueText = "50"
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
@@ -38,53 +34,20 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getCurrentTimelineEntry(
         for complication: CLKComplication,
-        withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void)
+        withHandler callback: @escaping (CLKComplicationTimelineEntry?) -> Void)
     {
         let entry: CLKComplicationTimelineEntry
+        let handler = ComplicationHandlers.handler(for: complication)
 
         if let date = dataStore.lastMeasurementDate, let level = dataStore.currentLevel {
-            let valueText = String(Int(level.rounded()))
-
-            switch complication.family {
-            case .circularSmall:
-                let template = CLKComplicationTemplateCircularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: PMShortTitleText)
-                template.line2TextProvider = CLKSimpleTextProvider(text: valueText)
-
-                entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-
-            case .modularSmall:
-                let template = CLKComplicationTemplateModularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: PMTitleText, shortText: PMShortTitleText)
-                template.line2TextProvider = CLKSimpleTextProvider(text: valueText)
-
-                entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-
-            default:
-                preconditionFailure("Complication family not supported")
-            }
+            let template = handler.template(for: level)
+            entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
         } else {
-            switch complication.family {
-            case .circularSmall:
-                let template = CLKComplicationTemplateCircularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: PMShortTitleText)
-                template.line2TextProvider = CLKSimpleTextProvider(text: PlaceholderText)
-
-                entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-
-            case .modularSmall:
-                let template = CLKComplicationTemplateModularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: PMTitleText, shortText: PMShortTitleText)
-                template.line2TextProvider = CLKSimpleTextProvider(text: PlaceholderText)
-
-                entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-
-            default:
-                preconditionFailure("Complication family not supported")
-            }
+            let template = handler.templateForNoValue()
+            entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
         }
 
-        handler(entry)
+        callback(entry)
     }
 
 
@@ -92,25 +55,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getLocalizableSampleTemplate(
         for complication: CLKComplication,
-        withHandler handler: @escaping (CLKComplicationTemplate?) -> Void)
+        withHandler callback: @escaping (CLKComplicationTemplate?) -> Void)
     {
         // This method will be called once per supported complication, and the results will be cached
 
-        switch complication.family {
-        case .circularSmall:
-            let template = CLKComplicationTemplateCircularSmallStackText()
-            template.line1TextProvider = CLKSimpleTextProvider(text: PMShortTitleText)
-            template.line2TextProvider = CLKSimpleTextProvider(text: SampleValueText)
-            handler(template)
+        let handler = ComplicationHandlers.handler(for: complication)
+        let template = handler.templateForSampleValue()
 
-        case .modularSmall:
-            let template = CLKComplicationTemplateModularSmallStackText()
-            template.line1TextProvider = CLKSimpleTextProvider(text: PMTitleText, shortText: PMShortTitleText)
-            template.line2TextProvider = CLKSimpleTextProvider(text: SampleValueText)
-            handler(template)
-
-        default:
-            preconditionFailure("Complication family not supported")
-        }
+        callback(template)
     }
 }
