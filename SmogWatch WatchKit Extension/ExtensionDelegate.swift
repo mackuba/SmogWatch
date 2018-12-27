@@ -13,7 +13,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let loader = KrakowPiosDataLoader()
 
     func applicationDidFinishLaunching() {
-        self.scheduleBackgroundRefresh(in: 0)
+        KrakowPiosDataLoader().fetchData { success in
+            if success {
+                self.reloadActiveComplications()
+            }
+
+            self.scheduleBackgroundRefresh(in: 3600)
+        }
     }
 
     func applicationDidBecomeActive() {
