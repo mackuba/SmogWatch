@@ -54,6 +54,7 @@ class KrakowPiosDataLoader {
         let d = DateFormatter()
         d.locale = Locale(identifier: "en_US_POSIX")
         d.dateFormat = "dd.MM.yyyy"
+        d.timeZone = TimeZone(identifier: "Europe/Warsaw")!
         return d
     }()
 
