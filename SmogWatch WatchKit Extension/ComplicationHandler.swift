@@ -11,7 +11,7 @@ import ClockKit
 private let PMTitleText = "PM10"
 private let PMShortTitleText = "PM"
 private let PlaceholderText = "–"
-private let SampleValueText = "50"
+private let SampleValueText = "00"
 
 protocol ComplicationHandler {
     func template(for value: Double) -> CLKComplicationTemplate
