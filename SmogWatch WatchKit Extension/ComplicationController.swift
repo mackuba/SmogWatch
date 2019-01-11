@@ -10,7 +10,7 @@ import ClockKit
 
 private let MeasurementValidityTime = 3600 * 3
 
-
+// for logging
 extension CLKComplicationFamily: CustomStringConvertible {
     public var description: String {
         switch self {
@@ -40,6 +40,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         for complication: CLKComplication,
         withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void)
     {
+        // does this matter at all anymore with Time Travel gone now? ¯\_(ツ)_/¯
         handler([])
     }
 
