@@ -15,12 +15,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching()")
 
+        // always fetch data on startup, so that we have some way of manually force reloading it
         KrakowPiosDataLoader().fetchData { success in
             if success {
                 self.reloadActiveComplications()
             }
 
-            self.scheduleBackgroundRefresh(in: 3600)
+            self.scheduleNextReload()
         }
     }
 
@@ -50,7 +51,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                         self.reloadActiveComplications()
                     }
 
-                    self.scheduleBackgroundRefresh(in: 3600)
+                    self.scheduleNextReload()
 
                     NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
                     // Be sure to complete the background task once you’re done.
@@ -92,11 +93,28 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
-    func scheduleBackgroundRefresh(in seconds: TimeInterval) {
-        NSLog("ExtensionDelegate: scheduling update \(seconds)s from now")
+    func nextReloadTime(after date: Date) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let targetMinutes = DateComponents(minute: 15)
+
+        // find next 15 minutes past the hour
+        var nextReloadTime = calendar.nextDate(after: date, matching: targetMinutes, matchingPolicy: .nextTime)!
+
+        // but if it's in less than 5 minutes, then skip this one and try next hour
+        if nextReloadTime.timeIntervalSince(date) < 5 * 60 {
+            nextReloadTime.addTimeInterval(3600)
+        }
+
+        return nextReloadTime
+    }
+
+    func scheduleNextReload() {
+        let targetDate = nextReloadTime(after: Date())
+
+        NSLog("ExtensionDelegate: scheduling next update at %@", "\(targetDate)")
 
         WKExtension.shared().scheduleBackgroundRefresh(
-            withPreferredDate: Date().addingTimeInterval(seconds),
+            withPreferredDate: targetDate,
             userInfo: nil,
             scheduledCompletion: { _ in
                 NSLog("ExtensionDelegate: background refresh task callback block called")
