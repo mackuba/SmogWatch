@@ -45,9 +45,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
 
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        NSLog("ComplicationController: getTimelineEndDate() for complication %@",
-              complication.family.description);
-        handler(dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime)))
+        let expirationTime =
+            dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime))
+
+        Logger.log("ComplicationController: getTimelineEndDate() for complication \(complication.family) -> " +
+            (expirationTime != nil ? "\(expirationTime!)" : "nil"))
+
+        handler(expirationTime)
     }
 
 
@@ -57,8 +61,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         for complication: CLKComplication,
         withHandler callback: @escaping (CLKComplicationTimelineEntry?) -> Void)
     {
-        NSLog("ComplicationController: getCurrentTimelineEntry() for complication %@",
-              complication.family.description)
+        Logger.log("ComplicationController: getCurrentTimelineEntry() for complication \(complication.family)")
 
         let entry: CLKComplicationTimelineEntry
         let handler = ComplicationHandlers.handler(for: complication)
@@ -66,11 +69,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         if let date = dataStore.lastMeasurementDate, let level = dataStore.currentLevel {
             let template = handler.template(for: level)
             entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-            NSLog("ComplicationController: getCurrentTimelineEntry() -> %@ %.0f", "\(date)", level)
+            Logger.log("ComplicationController: getCurrentTimelineEntry() -> \(date) \(level)")
         } else {
             let template = handler.templateForNoValue()
             entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            NSLog("ComplicationController: getCurrentTimelineEntry() -> %@ n/a", "\(Date())")
+            Logger.log("ComplicationController: getCurrentTimelineEntry() -> \(Date()) n/a")
         }
 
         callback(entry)
@@ -83,8 +86,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         for complication: CLKComplication,
         withHandler callback: @escaping (CLKComplicationTemplate?) -> Void)
     {
-        NSLog("ComplicationController: getLocalizableSampleTemplate() for complication %@",
-              complication.family.description)
+        Logger.log("ComplicationController: getLocalizableSampleTemplate() for " +
+            "complication \(complication.family)")
 
         // This method will be called once per supported complication, and the results will be cached
 

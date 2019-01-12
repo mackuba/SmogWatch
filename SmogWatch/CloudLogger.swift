@@ -8,11 +8,7 @@
 
 import Foundation
 
-private let FileName = "smogwatch-log.txt"
-
 class CloudLogger {
-    static var shared = CloudLogger()
-
     let queue = DispatchQueue(label: "CloudLogger", qos: .utility)
 
     let dateFormatter: DateFormatter = {
@@ -24,13 +20,13 @@ class CloudLogger {
 
     var logFile: FileHandle?
 
-    init() {
+    init(fileName: String) {
         queue.async {
             let fileManager = FileManager.default
 
             if let iCloudFolder = fileManager.url(forUbiquityContainerIdentifier: nil) {
                 let documents = iCloudFolder.appendingPathComponent("Documents")
-                let fileURL = documents.appendingPathComponent(FileName)
+                let fileURL = documents.appendingPathComponent(fileName)
 
                 if !fileManager.fileExists(atPath: fileURL.path) {
                     fileManager.createFile(atPath: fileURL.path, contents: nil)
@@ -49,7 +45,7 @@ class CloudLogger {
         }
     }
 
-    func log(text: String) {
+    func log(_ text: String) {
         let now = Date()
 
         queue.async {

@@ -81,15 +81,15 @@ class KrakowPiosDataLoader {
         request.httpBody = queryString().data(using: .utf8)!
         request.httpMethod = "POST"
 
-        NSLog("KrakowPiosDataLoader: sending request to %@ with %@ ...", DataURL, queryString())
+        Logger.log("KrakowPiosDataLoader: sending request to \(DataURL) with \(queryString()) ...")
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             var success = false
 
-            NSLog("KrakowPiosDataLoader: response received: %@ %@ %@",
-                  data != nil ? "\(data!.count) bytes" : "(nil)",
-                  response != nil ? "\(response!)" : "(nil)",
-                  error != nil ? "\(error!)" : "(no error)")
+            Logger.log("KrakowPiosDataLoader: response received: " +
+                  (data != nil ? "\(data!.count) bytes" : "(nil)") + " " +
+                  (response != nil ? "\(response!)" : "(nil)") + " " +
+                  (error != nil ? "\(error!)" : "(no error)"))
 
             if let data = data {
                 if let response = try? JSONDecoder().decode(Response.self, from: data) {
@@ -98,7 +98,7 @@ class KrakowPiosDataLoader {
                             self.dataStore.currentLevel = point.value
                             self.dataStore.lastMeasurementDate = point.date
 
-                            NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", point.value, "\(point.date)")
+                            Logger.log("KrakowPiosDataLoader: saving data: %(point.value) at \(point.date)")
 
                             success = true
                         }
@@ -107,7 +107,7 @@ class KrakowPiosDataLoader {
             }
 
             if !success {
-                NSLog("KrakowPiosDataLoader: no data found")
+                Logger.log("KrakowPiosDataLoader: no data found")
             }
 
             completion(success)

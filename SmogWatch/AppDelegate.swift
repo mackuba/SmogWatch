@@ -8,6 +8,8 @@
 
 import UIKit
 
+let Logger = CloudLogger(fileName: "smogwatch-log-ios.txt")
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        CloudLogger.shared.log(text: "iOS app launched")
+        Logger.log("iOS app launched")
 
         return true
     }

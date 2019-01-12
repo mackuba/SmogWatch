@@ -8,12 +8,14 @@
 
 import WatchKit
 
+let Logger = CloudLogger(fileName: "smogwatch-log-watchos.txt")
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let loader = KrakowPiosDataLoader()
 
     func applicationDidFinishLaunching() {
-        NSLog("ExtensionDelegate: applicationDidFinishLaunching()")
+        Logger.log("ExtensionDelegate: applicationDidFinishLaunching()")
 
         // always fetch data on startup, so that we have some way of manually force reloading it
         KrakowPiosDataLoader().fetchData { success in
@@ -26,13 +28,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
     func applicationDidBecomeActive() {
-        NSLog("ExtensionDelegate: applicationDidBecomeActive()")
+        Logger.log("ExtensionDelegate: applicationDidBecomeActive()")
 
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillResignActive() {
-        NSLog("ExtensionDelegate: applicationWillResignActive()")
+        Logger.log("ExtensionDelegate: applicationWillResignActive()")
 
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, etc.
@@ -44,7 +46,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask")
+                Logger.log("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask")
 
                 KrakowPiosDataLoader().fetchData { success in
                     if success {
@@ -53,20 +55,20 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
                     self.scheduleNextReload()
 
-                    NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
+                    Logger.log("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
                     // Be sure to complete the background task once you’re done.
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask")
+                Logger.log("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask")
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKWatchConnectivityRefreshBackgroundTask")
+                Logger.log("ExtensionDelegate: received WKWatchConnectivityRefreshBackgroundTask")
                 // Be sure to complete the connectivity task once you’re done.
                 connectivityTask.setTaskCompletedWithSnapshot(false)
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKURLSessionRefreshBackgroundTask")
+                Logger.log("ExtensionDelegate: received WKURLSessionRefreshBackgroundTask")
                 // Be sure to complete the URL session task once you’re done.
                 urlSessionTask.setTaskCompletedWithSnapshot(false)
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
@@ -76,7 +78,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 // Be sure to complete the intent-did-run task once you're done.
                 intentDidRunTask.setTaskCompletedWithSnapshot(false)
             default:
-                NSLog("ExtensionDelegate: received unknown task")
+                Logger.log("ExtensionDelegate: received unknown task")
                 // make sure to complete unhandled task types
                 task.setTaskCompletedWithSnapshot(false)
             }
@@ -86,9 +88,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func reloadActiveComplications() {
         let server = CLKComplicationServer.sharedInstance()
 
-        NSLog("ExtensionDelegate: requesting reload of complications")
+        Logger.log("ExtensionDelegate: requesting reload of complications")
         for complication in server.activeComplications ?? [] {
-            NSLog("- %@", complication.family.description)
+            Logger.log("- \(complication.family)")
             server.reloadTimeline(for: complication)
         }
     }
@@ -111,13 +113,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func scheduleNextReload() {
         let targetDate = nextReloadTime(after: Date())
 
-        NSLog("ExtensionDelegate: scheduling next update at %@", "\(targetDate)")
+        Logger.log("ExtensionDelegate: scheduling next update at \(targetDate)")
 
         WKExtension.shared().scheduleBackgroundRefresh(
             withPreferredDate: targetDate,
             userInfo: nil,
             scheduledCompletion: { _ in
-                NSLog("ExtensionDelegate: background refresh task callback block called")
+                Logger.log("ExtensionDelegate: background refresh task callback block called")
             }
         )
     }

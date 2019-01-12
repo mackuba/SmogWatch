@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C0C978721EA4F7100A299A8 /* CloudLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0C978621EA4F7100A299A8 /* CloudLogger.swift */; };
+		8C0C978921EA6DCF00A299A8 /* CloudLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0C978621EA4F7100A299A8 /* CloudLogger.swift */; };
 		8C2A46DE21C5523A0029E4BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */; };
 		8C2A46E021C5523A0029E4BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A46DF21C5523A0029E4BC /* ViewController.swift */; };
 		8C2A46E321C5523A0029E4BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A46E121C5523A0029E4BC /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		8C0C978121E9622900A299A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C0C978621EA4F7100A299A8 /* CloudLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudLogger.swift; sourceTree = "<group>"; };
 		8C0C978821EA528D00A299A8 /* SmogWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmogWatch.entitlements; sourceTree = "<group>"; };
+		8C0C978A21EA709C00A299A8 /* SmogWatch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SmogWatch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		8C2A46DA21C5523A0029E4BC /* SmogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C2A46DF21C5523A0029E4BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		8C2A46FF21C5523C0029E4BC /* SmogWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8C0C978A21EA709C00A299A8 /* SmogWatch WatchKit Extension.entitlements */,
 				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
 				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
 				8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */,
@@ -257,6 +260,11 @@
 					};
 					8C2A46FA21C5523C0029E4BC = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -328,6 +336,7 @@
 				8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */,
 				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
 				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
+				8C0C978921EA6DCF00A299A8 /* CloudLogger.swift in Sources */,
 				8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */,
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
@@ -498,6 +507,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "SmogWatch WatchKit Extension/SmogWatch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;
 				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
@@ -520,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "SmogWatch WatchKit Extension/SmogWatch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KL585M628D;
 				INFOPLIST_FILE = "SmogWatch WatchKit Extension/Info.plist";
