@@ -69,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8C0C978121E9622900A299A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8C2A46DA21C5523A0029E4BC /* SmogWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmogWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2A46DD21C5523A0029E4BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C2A46DF21C5523A0029E4BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		8C2A46D121C5523A0029E4BC = {
 			isa = PBXGroup;
 			children = (
+				8C0C978121E9622900A299A8 /* README.md */,
 				8C2A46DC21C5523A0029E4BC /* SmogWatch */,
 				8C2A46F021C5523B0029E4BC /* SmogWatch WatchKit App */,
 				8C2A46FF21C5523C0029E4BC /* SmogWatch WatchKit Extension */,
