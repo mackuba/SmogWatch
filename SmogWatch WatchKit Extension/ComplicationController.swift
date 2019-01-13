@@ -40,14 +40,21 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         for complication: CLKComplication,
         withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void)
     {
+        NSLog("ComplicationController: getSupportedTimeTravelDirections() for complication %@",
+              complication.family.description);
         // does this matter at all anymore with Time Travel gone now? ¯\_(ツ)_/¯
-        handler([])
+        handler([.forward])
     }
 
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-        NSLog("ComplicationController: getTimelineEndDate() for complication %@",
-              complication.family.description);
-        handler(dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime)))
+        let expirationTime =
+            dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime))
+
+        NSLog("ComplicationController: getTimelineEndDate() for complication %@ -> %@",
+              complication.family.description,
+              expirationTime != nil ? "\(expirationTime!)" : "nil");
+
+        handler(expirationTime)
     }
 
 
