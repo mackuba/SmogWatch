@@ -131,8 +131,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         WKExtension.shared().scheduleBackgroundRefresh(
             withPreferredDate: targetDate,
             userInfo: nil,
-            scheduledCompletion: { _ in
-                NSLog("ExtensionDelegate: background refresh task callback block called")
+            scheduledCompletion: { error in
+                // contrary to what the docs say, this is called when the task is scheduled, i.e. immediately
+                NSLog("ExtensionDelegate: background task %@",
+                      error == nil ? "scheduled successfully" : "NOT scheduled: \(error!)")
             }
         )
     }
