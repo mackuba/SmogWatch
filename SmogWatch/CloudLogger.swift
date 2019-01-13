@@ -8,6 +8,19 @@
 
 import Foundation
 
+/*
+   Tips:
+   1) enable iCloud in Capabilities, for both iOS and WatchKit extension targets (iCloud Documents only)
+   2) enable the same container iCloud.eu.mackuba.SmogWatch in both targets
+   3) add a key NSUbiquitousContainers in both Info.plists, with a dictionary entry iCloud.eu.mackuba.SmogWatch,
+      and in that dictionary add NSUbiquitousContainerIsDocumentScopePublic => true; without this, you will see
+      a container with some data in "Manage iCloud Storage", but not on icloud.com / Files.app / Mac Finder
+   4) if you've run the app once with iCloud enabled but without that Info.plist config, you need to increase the
+      bundle version number for the change to be recognized (and it needs to be the same in all targets)
+   5) it works in the iOS simulator, just remember to log in to iCloud in the settings (just like on a real device),
+      otherwise url(forUbiquityContainerIdentifier:) will return nil
+*/        
+
 class CloudLogger {
     let queue = DispatchQueue(label: "CloudLogger", qos: .utility)
 
@@ -24,7 +37,11 @@ class CloudLogger {
         queue.async {
             let fileManager = FileManager.default
 
+            // get the location of the local iCloud Drive folder for the app
             if let iCloudFolder = fileManager.url(forUbiquityContainerIdentifier: nil) {
+
+                // we need to create a "Documents" subdirectory and put our stuff there
+                // only things in that directory are visible in iCloud Drive in Finder on Mac
                 let documents = iCloudFolder.appendingPathComponent("Documents")
                 let fileURL = documents.appendingPathComponent(fileName)
 
