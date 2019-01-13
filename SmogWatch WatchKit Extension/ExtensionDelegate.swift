@@ -8,6 +8,19 @@
 
 import WatchKit
 
+// for logging
+extension WKSnapshotReason: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .appBackgrounded: return "appBackgrounded"
+        case .appScheduled: return "appScheduled"
+        case .complicationUpdate: return "complicationUpdate"
+        case .prelaunch: return "prelaunch"
+        case .returnToDefaultState: return "returnToDefaultState"
+        }
+    }
+}
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let loader = KrakowPiosDataLoader()
@@ -58,7 +71,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask")
+                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@",
+                      snapshotTask.reasonForSnapshot.description)
+
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
