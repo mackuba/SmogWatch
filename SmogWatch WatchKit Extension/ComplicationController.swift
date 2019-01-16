@@ -46,6 +46,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler([.forward])
     }
 
+    func getTimelineStartDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
+        let startTime = dataStore.lastMeasurementDate
+
+        NSLog("ComplicationController: getTimelineStartDate() for complication %@ -> %@",
+              complication.family.description,
+              startTime != nil ? "\(startTime!)" : "nil");
+
+        handler(startTime)
+    }
+
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         let expirationTime =
             dataStore.lastMeasurementDate?.addingTimeInterval(TimeInterval(MeasurementValidityTime))
@@ -57,6 +67,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(expirationTime)
     }
 
+    func getPrivacyBehavior(
+        for complication: CLKComplication,
+        withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void)
+    {
+        NSLog("ComplicationController: getPrivacyBehavior() for complication %@", complication.family.description);
+        handler(.showOnLockScreen)
+    }
 
     // MARK: - Timeline Population
 
@@ -81,6 +98,28 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         }
 
         callback(entry)
+    }
+
+    func getTimelineEntries(
+        for complication: CLKComplication,
+        before date: Date,
+        limit: Int,
+        withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void)
+    {
+        NSLog("ComplicationController: getTimelineEntries before %@ for %@",
+              "\(date)", complication.family.description)
+        handler([])
+    }
+
+    func getTimelineEntries(
+        for complication: CLKComplication,
+        after date: Date,
+        limit: Int,
+        withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void)
+    {
+        NSLog("ComplicationController: getTimelineEntries after %@ for %@",
+              "\(date)", complication.family.description)
+        handler([])
     }
 
 
