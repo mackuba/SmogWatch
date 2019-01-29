@@ -58,6 +58,13 @@ class KrakowPiosDataLoader {
         return d
     }()
 
+    let session: URLSession = {
+        let config = URLSessionConfiguration.ephemeral
+        config.timeoutIntervalForResource = 10.0
+
+        return URLSession(configuration: config)
+    }()
+
     let dataStore = DataStore()
 
     func queryString() -> String {
@@ -83,7 +90,7 @@ class KrakowPiosDataLoader {
 
         NSLog("KrakowPiosDataLoader: sending request to %@ with %@ ...", DataURL, queryString())
 
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             var success = false
 
             NSLog("KrakowPiosDataLoader: response received: %@ %@ %@",
