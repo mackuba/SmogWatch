@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WatchKit
 
 private let DataURL = "http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"
 
@@ -88,7 +89,8 @@ class KrakowPiosDataLoader {
         request.httpBody = queryString().data(using: .utf8)!
         request.httpMethod = "POST"
 
-        NSLog("KrakowPiosDataLoader: sending request to %@ with %@ ...", DataURL, queryString())
+        NSLog("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...",
+              WKExtension.shared().applicationState.description, DataURL, queryString())
 
         let task = session.dataTask(with: request) { (data, response, error) in
             var success = false

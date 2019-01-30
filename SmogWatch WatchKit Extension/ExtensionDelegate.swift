@@ -8,25 +8,12 @@
 
 import WatchKit
 
-// for logging
-extension WKSnapshotReason: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .appBackgrounded: return "appBackgrounded"
-        case .appScheduled: return "appScheduled"
-        case .complicationUpdate: return "complicationUpdate"
-        case .prelaunch: return "prelaunch"
-        case .returnToDefaultState: return "returnToDefaultState"
-        }
-    }
-}
-
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let loader = KrakowPiosDataLoader()
 
     func applicationDidFinishLaunching() {
-        NSLog("ExtensionDelegate: applicationDidFinishLaunching()")
+        NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
         // always fetch data on startup, so that we have some way of manually force reloading it
         KrakowPiosDataLoader().fetchData { success in

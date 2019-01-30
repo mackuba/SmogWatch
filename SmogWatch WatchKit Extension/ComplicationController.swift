@@ -10,25 +10,6 @@ import ClockKit
 
 private let MeasurementValidityTime = 3600 * 3
 
-// for logging
-extension CLKComplicationFamily: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .circularSmall: return "circularSmall"
-        case .extraLarge: return "extraLarge"
-        case .graphicBezel: return "graphicBezel"
-        case .graphicCircular: return "graphicCircular"
-        case .graphicCorner: return "graphicCorner"
-        case .graphicRectangular: return "graphicRectangular"
-        case .modularLarge: return "modularLarge"
-        case .modularSmall: return "modularSmall"
-        case .utilitarianLarge: return "utilitarianLarge"
-        case .utilitarianSmall: return "utilitarianSmall"
-        case .utilitarianSmallFlat: return "utilitarianSmallFlat"
-        }
-    }
-}
-
 class ComplicationController: NSObject, CLKComplicationDataSource {
 
     let dataStore = DataStore()
