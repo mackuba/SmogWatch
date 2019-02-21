@@ -15,13 +15,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
+        scheduleNextReload()
+
         // always fetch data on startup, so that we have some way of manually force reloading it
         KrakowPiosDataLoader().fetchData { success in
             if success {
                 self.reloadActiveComplications()
             }
-
-            self.scheduleNextReload()
         }
     }
 
@@ -54,12 +54,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [\(WKExtension.shared().applicationState)]")
 
+                scheduleNextReload()
+
                 KrakowPiosDataLoader().fetchData { success in
                     if success {
                         self.reloadActiveComplications()
                     }
-
-                    self.scheduleNextReload()
 
                     NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
                     // Be sure to complete the background task once you’re done.
