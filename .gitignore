@@ -1,2 +1,4 @@
 .DS_Store
 *.xcuserdatad
+LogServer/.build
+LogServer/*.xcodeproj
