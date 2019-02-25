@@ -106,6 +106,7 @@ class KrakowPiosDataLoader {
                         if let point = series.points.last {
                             self.dataStore.currentLevel = point.value
                             self.dataStore.lastMeasurementDate = point.date
+                            self.dataStore.lastUpdateDate = Date()
 
                             NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", point.value, "\(point.date)")
 

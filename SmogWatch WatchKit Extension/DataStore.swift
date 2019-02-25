@@ -10,6 +10,7 @@ import Foundation
 
 private let CurrentLevelKey = "CurrentLevel"
 private let LastMeasurementDate = "LastMeasurementDate"
+private let LastUpdateDate = "LastUpdateDate"
 
 class DataStore {
     let defaults = UserDefaults.standard
@@ -20,6 +21,15 @@ class DataStore {
         }
         set {
             defaults.set(newValue, forKey: CurrentLevelKey)
+        }
+    }
+
+    var lastUpdateDate: Date? {
+        get {
+            return defaults.object(forKey: LastUpdateDate) as? Date
+        }
+        set {
+            defaults.set(newValue, forKey: LastUpdateDate)
         }
     }
 

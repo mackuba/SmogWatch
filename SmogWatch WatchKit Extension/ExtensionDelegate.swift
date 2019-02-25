@@ -8,9 +8,20 @@
 
 import WatchKit
 
+private let MinimumIntervalBetweenUpdates: TimeInterval = 5 * 60
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let loader = KrakowPiosDataLoader()
+    let dataStore = DataStore()
+
+    var canUpdateDataNow: Bool {
+        if let lastUpdate = dataStore.lastUpdateDate {
+            return Date().timeIntervalSince(lastUpdate) > MinimumIntervalBetweenUpdates
+        } else {
+            return true
+        }
+    }
 
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
@@ -25,10 +36,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
-        KrakowPiosDataLoader().fetchData { success in
-            if success {
-                self.reloadActiveComplications()
+        if canUpdateDataNow {
+            KrakowPiosDataLoader().fetchData { success in
+                if success {
+                    self.reloadActiveComplications()
+                }
             }
+        } else {
+            NSLog("ExtensionDelegate: not loading data since it was last updated at \(dataStore.lastUpdateDate!)")
         }
     }
 
