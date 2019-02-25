@@ -16,13 +16,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
         scheduleNextReload()
-
-        // always fetch data on startup, so that we have some way of manually force reloading it
-        KrakowPiosDataLoader().fetchData { success in
-            if success {
-                self.reloadActiveComplications()
-            }
-        }
     }
 
     func applicationWillEnterForeground() {
@@ -32,7 +25,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        KrakowPiosDataLoader().fetchData { success in
+            if success {
+                self.reloadActiveComplications()
+            }
+        }
     }
 
     func applicationWillResignActive() {
