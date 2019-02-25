@@ -8,21 +8,25 @@
 
 import WatchKit
 
+private let MinimumIntervalBetweenUpdates: TimeInterval = 5 * 60
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let loader = KrakowPiosDataLoader()
+    let dataStore = DataStore()
+
+    var canUpdateDataNow: Bool {
+        if let lastUpdate = dataStore.lastUpdateDate {
+            return Date().timeIntervalSince(lastUpdate) > MinimumIntervalBetweenUpdates
+        } else {
+            return true
+        }
+    }
 
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
         scheduleNextReload()
-
-        // always fetch data on startup, so that we have some way of manually force reloading it
-        KrakowPiosDataLoader().fetchData { success in
-            if success {
-                self.reloadActiveComplications()
-            }
-        }
     }
 
     func applicationWillEnterForeground() {
@@ -32,7 +36,15 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if canUpdateDataNow {
+            KrakowPiosDataLoader().fetchData { success in
+                if success {
+                    self.reloadActiveComplications()
+                }
+            }
+        } else {
+            NSLog("ExtensionDelegate: not loading data since it was last updated at \(dataStore.lastUpdateDate!)")
+        }
     }
 
     func applicationWillResignActive() {
