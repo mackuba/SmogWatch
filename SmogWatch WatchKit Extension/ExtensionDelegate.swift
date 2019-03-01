@@ -26,7 +26,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
-        scheduleNextReload()
+        // scheduleNextReload()
     }
 
     func applicationWillEnterForeground() {
