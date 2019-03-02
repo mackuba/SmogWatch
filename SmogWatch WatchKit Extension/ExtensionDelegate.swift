@@ -64,7 +64,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask")
+                NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [\(WKExtension.shared().applicationState)]")
 
                 scheduleNextReload()
 
@@ -78,7 +78,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@",
+                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@ [\(WKExtension.shared().applicationState)]",
                       snapshotTask.reasonForSnapshot.description)
 
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
