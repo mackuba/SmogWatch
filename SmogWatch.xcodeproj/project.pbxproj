@@ -21,6 +21,8 @@
 		8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470421C5523C0029E4BC /* NotificationController.swift */; };
 		8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A470621C5523C0029E4BC /* ComplicationController.swift */; };
 		8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2A470821C5523C0029E4BC /* Assets.xcassets */; };
+		8C56CD9B2230683500B1F267 /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56CD9A2230683500B1F267 /* KrakowPiosDataLoader.swift */; };
+		8C56CD9D2230685300B1F267 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C56CD9C2230685300B1F267 /* DataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		8C2A470821C5523C0029E4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2A470A21C5523C0029E4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		8C56CD9A2230683500B1F267 /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
+		8C56CD9C2230685300B1F267 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +157,11 @@
 			children = (
 				8C2A470821C5523C0029E4BC /* Assets.xcassets */,
 				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
+				8C56CD9C2230685300B1F267 /* DataStore.swift */,
 				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
 				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
+				8C56CD9A2230683500B1F267 /* KrakowPiosDataLoader.swift */,
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 			);
@@ -304,7 +310,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C2A470521C5523C0029E4BC /* NotificationController.swift in Sources */,
+				8C56CD9D2230685300B1F267 /* DataStore.swift in Sources */,
 				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
+				8C56CD9B2230683500B1F267 /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
 			);
