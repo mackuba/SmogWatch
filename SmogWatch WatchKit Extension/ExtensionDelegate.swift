@@ -66,7 +66,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [\(WKExtension.shared().applicationState)]")
 
-                scheduleNextReload()
+                // scheduleNextReload()
 
                 KrakowPiosDataLoader().fetchData { success in
                     if success {
