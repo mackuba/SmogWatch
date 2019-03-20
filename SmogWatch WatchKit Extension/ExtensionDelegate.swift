@@ -37,6 +37,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
         if canUpdateDataNow {
+            scheduleNextReload()
+
             KrakowPiosDataLoader().fetchData { success in
                 if success {
                     self.reloadActiveComplications()
