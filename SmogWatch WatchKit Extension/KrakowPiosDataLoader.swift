@@ -82,6 +82,12 @@ class KrakowPiosDataLoader {
         request.httpBody = queryString().data(using: .utf8)!
         request.httpMethod = "POST"
 
+        if Bool.random() {
+            let delay = UInt32.random(in: 1...14)
+            NSLog("KrakowPiosDataLoader: sleeping for \(delay) sec")
+            sleep(delay)
+        }
+
         NSLog("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...",
               WKExtension.shared().applicationState.description, DataURL, queryString())
 
