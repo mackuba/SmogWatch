@@ -33,3 +33,4 @@ The app itself has currently no UI whatsoever, so if you see a black screen, don
 Copyright © 2019 [Kuba Suder](https://mackuba.eu). Licensed under [WTFPL License](http://www.wtfpl.net).
 
 I've made the code available under WTFPL because the whole idea is for other people to be able to learn this stuff together with me and reuse any pieces they need from my app to build their own. So take what you need and build cool shit, and don't worry about licences. Of course if you want to mention me somewhere, I'll be very happy :)
+
