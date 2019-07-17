@@ -69,11 +69,14 @@ class KrakowPiosDataLoader {
     let dataStore = DataStore()
 
     func queryString() -> String {
+        // data is usually around one hour behind, so at midnight we need to ask for the previous day
+        let oneHourAgo = Calendar(identifier: .gregorian).date(byAdding: .hour, value: -1, to: Date())!
+
         let query: [String:Any] = [
             "measType": "Auto",
             "viewType": "Parameter",
             "dateRange": "Day",
-            "date": dateFormatter.string(from: Date()),
+            "date": dateFormatter.string(from: oneHourAgo),
             "viewTypeEntityId": "pm10",
             "channels": [148]
         ]
