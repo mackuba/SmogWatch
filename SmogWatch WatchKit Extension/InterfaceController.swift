@@ -12,12 +12,21 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
+    @IBOutlet var valueLabel: WKInterfaceLabel!
+
+    let dataStore = DataStore()
+
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        // Configure interface objects here.
+
+        if let amount = dataStore.currentLevel {
+            let displayedValue = Int(amount.rounded())
+            valueLabel.setText(String(displayedValue))
+        } else {
+            valueLabel.setText("?")
+        }
     }
-    
+
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
