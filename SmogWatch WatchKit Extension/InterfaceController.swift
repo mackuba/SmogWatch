@@ -19,6 +19,14 @@ class InterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
+        updateDisplayedData()
+
+        NotificationCenter.default.addObserver(forName: DataStore.dataLoadedNotification, object: nil, queue: nil) { _ in
+            self.updateDisplayedData()
+        }
+    }
+
+    func updateDisplayedData() {
         if let amount = dataStore.currentLevel {
             let displayedValue = Int(amount.rounded())
             valueLabel.setText(String(displayedValue))

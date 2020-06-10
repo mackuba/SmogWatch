@@ -15,6 +15,8 @@ private let LastUpdateDate = "LastUpdateDate"
 class DataStore {
     let defaults = UserDefaults.standard
 
+    static let dataLoadedNotification = Notification.Name("DataLoadedNotification")
+
     var currentLevel: Double? {
         get {
             return defaults.object(forKey: CurrentLevelKey) as? Double
