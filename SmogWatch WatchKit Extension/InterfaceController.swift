@@ -13,6 +13,8 @@ import Foundation
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet var valueLabel: WKInterfaceLabel!
+    @IBOutlet var valueCircle: WKInterfaceGroup!
+    @IBOutlet var gradeLabel: WKInterfaceLabel!
 
     let dataStore = DataStore()
 
@@ -27,12 +29,19 @@ class InterfaceController: WKInterfaceController {
     }
 
     func updateDisplayedData() {
+        let smogLevel: SmogLevel
+
         if let amount = dataStore.currentLevel {
             let displayedValue = Int(amount.rounded())
             valueLabel.setText(String(displayedValue))
+            smogLevel = SmogLevel.levelForValue(amount)
         } else {
             valueLabel.setText("?")
+            smogLevel = .unknown
         }
+
+        valueCircle.setBackgroundColor(smogLevel.color)
+        gradeLabel.setText(smogLevel.title)
     }
 
     override func willActivate() {

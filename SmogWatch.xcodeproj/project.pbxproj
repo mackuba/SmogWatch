@@ -24,6 +24,7 @@
 		8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472321CEEAAA0029E4BC /* DataStore.swift */; };
 		8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */; };
 		8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */; };
+		8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32617249291EA0090D0E1 /* SmogLevel.swift */; };
 		8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		8C2A472321CEEAAA0029E4BC /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
 		8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitExtensions.swift; sourceTree = "<group>"; };
+		8CD32617249291EA0090D0E1 /* SmogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmogLevel.swift; sourceTree = "<group>"; };
 		8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 				8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */,
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
+				8CD32617249291EA0090D0E1 /* SmogLevel.swift */,
 				8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */,
 			);
 			path = "SmogWatch WatchKit Extension";
@@ -325,6 +328,7 @@
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
+				8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

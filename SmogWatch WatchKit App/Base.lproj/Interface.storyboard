@@ -20,6 +20,7 @@
                                 <group width="100" height="100" alignment="center" verticalAlignment="center" layout="overlap" radius="48" id="d9b-ve-QA0">
                                     <items>
                                         <label alignment="center" verticalAlignment="center" text="32" id="PDF-fB-VzR">
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.79772777286901408" colorSpace="calibratedRGB"/>
                                             <fontDescription key="font" type="system" pointSize="40"/>
                                         </label>
                                     </items>
@@ -32,6 +33,8 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="gradeLabel" destination="fk1-AV-eHG" id="lhV-1z-dsp"/>
+                        <outlet property="valueCircle" destination="d9b-ve-QA0" id="bzd-xg-DFl"/>
                         <outlet property="valueLabel" destination="PDF-fB-VzR" id="dGE-oS-Wgn"/>
                     </connections>
                 </controller>
