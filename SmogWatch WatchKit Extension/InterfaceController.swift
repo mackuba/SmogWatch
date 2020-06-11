@@ -15,8 +15,15 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var valueLabel: WKInterfaceLabel!
     @IBOutlet var valueCircle: WKInterfaceGroup!
     @IBOutlet var gradeLabel: WKInterfaceLabel!
+    @IBOutlet var updatedAtLabel: WKInterfaceLabel!
+    @IBOutlet var updatedAtRow: WKInterfaceGroup!
 
     let dataStore = DataStore()
+    let dateFormatter = DateFormatter()
+
+    let shortTimeFormat = DateFormatter.dateFormat(fromTemplate: "H:mm", options: 0, locale: nil)
+    let longTimeFormat = DateFormatter.dateFormat(fromTemplate: "E H:mm", options: 0, locale: nil)
+
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -29,18 +36,25 @@ class InterfaceController: WKInterfaceController {
     }
 
     func updateDisplayedData() {
-        let smogLevel: SmogLevel
+        var smogLevel: SmogLevel = .unknown
+        var valueText = "?"
 
-        if let amount = dataStore.currentLevel {
-            let displayedValue = Int(amount.rounded())
-            valueLabel.setText(String(displayedValue))
-            smogLevel = SmogLevel.levelForValue(amount)
+        if let updatedAt = dataStore.lastMeasurementDate {
+            updatedAtRow.setHidden(false)
+
+            dateFormatter.dateFormat = isSameDay(updatedAt) ? shortTimeFormat : longTimeFormat
+            updatedAtLabel.setText(dateFormatter.string(from: updatedAt))
+
+            if let amount = dataStore.currentLevel, Date().timeIntervalSince(updatedAt) < 6 * 3600 {
+                smogLevel = SmogLevel.levelForValue(amount)
+                valueText = String(Int(amount.rounded()))
+            }
         } else {
-            valueLabel.setText("?")
-            smogLevel = .unknown
+            updatedAtRow.setHidden(true)
         }
 
         valueCircle.setBackgroundColor(smogLevel.color)
+        valueLabel.setText(valueText)
         gradeLabel.setText(smogLevel.title)
     }
 
@@ -54,4 +68,12 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    func isSameDay(_ date: Date) -> Bool {
+        let calendar = Calendar.current
+
+        let updatedDay = calendar.component(.day, from: date)
+        let currentDay = calendar.component(.day, from: Date())
+
+        return updatedDay == currentDay
+    }
 }

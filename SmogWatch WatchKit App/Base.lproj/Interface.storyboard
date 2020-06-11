@@ -32,9 +32,22 @@
                                 </label>
                             </items>
                         </group>
+                        <group alignment="center" spacing="4" id="9Z0-zI-ern">
+                            <items>
+                                <label alignment="left" text="Updated:" id="9Bp-2n-Dxv">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                                <label alignment="left" text="15:00" id="aqO-eg-dhr">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                        </group>
                     </items>
                     <connections>
                         <outlet property="gradeLabel" destination="fk1-AV-eHG" id="lhV-1z-dsp"/>
+                        <outlet property="updatedAtLabel" destination="aqO-eg-dhr" id="hNu-jD-mZz"/>
+                        <outlet property="updatedAtRow" destination="9Z0-zI-ern" id="Dja-de-cL0"/>
                         <outlet property="valueCircle" destination="d9b-ve-QA0" id="bzd-xg-DFl"/>
                         <outlet property="valueLabel" destination="PDF-fB-VzR" id="dGE-oS-Wgn"/>
                     </connections>
