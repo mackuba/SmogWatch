@@ -25,6 +25,7 @@
                                         </label>
                                     </items>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <variation key="device=watch38mm" height="90" radius="43" width="90"/>
                                 </group>
                                 <label alignment="center" verticalAlignment="bottom" text="Good" id="fk1-AV-eHG">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
