@@ -43,8 +43,15 @@
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
                         </group>
+                        <group width="1" alignment="left" id="krT-IZ-fcv">
+                            <items>
+                                <imageView height="65" alignment="left" contentMode="left" id="bQu-Nl-bsS"/>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="5" top="10" bottom="10"/>
+                        </group>
                     </items>
                     <connections>
+                        <outlet property="chartView" destination="bQu-Nl-bsS" id="jQt-Hs-bWh"/>
                         <outlet property="gradeLabel" destination="fk1-AV-eHG" id="lhV-1z-dsp"/>
                         <outlet property="updatedAtLabel" destination="aqO-eg-dhr" id="hNu-jD-mZz"/>
                         <outlet property="updatedAtRow" destination="9Z0-zI-ern" id="Dja-de-cL0"/>
