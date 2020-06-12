@@ -31,7 +31,7 @@ class InterfaceController: WKInterfaceController {
 
     let leftChartMargin: CGFloat = 17
     let bottomChartMargin: CGFloat = 10
-    let rightMargin: CGFloat = 5
+    let rightMargin: CGFloat = 4
 
     let chartFontAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor.lightGray,
@@ -90,7 +90,7 @@ class InterfaceController: WKInterfaceController {
     }
 
     func generateChart(points: [DataPoint]) -> UIImage? {
-        let width = self.contentFrame.width - rightMargin
+        let width = self.contentFrame.width
         let height: CGFloat = 65.0
         let imageSize = CGSize(width: width, height: height)
 
@@ -133,7 +133,7 @@ class InterfaceController: WKInterfaceController {
             context.addLine(to: position)
 
             drawText(String(hour(for: points[i])),
-                     x: position.x - 4,
+                     x: position.x,
                      y: height - bottomChartMargin,
                      alignment: .center)
         }
@@ -166,7 +166,7 @@ class InterfaceController: WKInterfaceController {
     func chartPosition(forPointAt index: Int, from values: [Double], chartSize: CGSize) -> CGPoint {
         let xPadding: CGFloat = 3
         let yPadding: CGFloat = 3
-        let innerWidth = chartSize.width - leftChartMargin - 2 * xPadding
+        let innerWidth = chartSize.width - leftChartMargin - 2 * xPadding - rightMargin
         let innerHeight = chartSize.height - bottomChartMargin - 2 * yPadding
 
         let minValue = values.min()!
