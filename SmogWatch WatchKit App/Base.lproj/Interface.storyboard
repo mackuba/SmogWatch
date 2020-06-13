@@ -47,12 +47,53 @@
                             <items>
                                 <imageView height="65" alignment="left" contentMode="left" id="bQu-Nl-bsS"/>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="10"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="15"/>
+                        </group>
+                        <group width="1" alignment="left" layout="vertical" spacing="6" id="a8D-F3-QRT">
+                            <items>
+                                <button alignment="left" id="pKa-Cr-HPG">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="XFM-mB-b7b">
+                                        <items>
+                                            <label alignment="left" text="Choose Station" id="19e-hf-Hcc"/>
+                                            <label height="17" alignment="left" text="Kraków, os. Swoszowice" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="gaz-4U-Tj6">
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.13336184620857239" green="0.13326132297515869" blue="0.13725566864013672" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <edgeInsets key="margins" left="10" right="8" top="8" bottom="8"/>
+                                    </group>
+                                    <connections>
+                                        <segue destination="tQh-fT-tIc" kind="push" identifier="ChooseStation" id="NlC-dn-GDH"/>
+                                    </connections>
+                                </button>
+                                <button alignment="left" id="ta8-oV-o3O">
+                                    <group key="contentGroup" width="1" alignment="left" layout="vertical" id="I7H-eW-Txi">
+                                        <items>
+                                            <label alignment="left" text="Choose Pollutant" id="oVv-dm-Ndo"/>
+                                            <label alignment="left" text="PM10" textAlignment="left" id="yoe-Vr-h0Z">
+                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.13336184619999999" green="0.13326132299999999" blue="0.13725566859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <edgeInsets key="margins" left="10" right="8" top="8" bottom="8"/>
+                                    </group>
+                                    <connections>
+                                        <segue destination="tQh-fT-tIc" kind="push" identifier="ChoosePollutant" id="4W3-Lx-eMV"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
                     <connections>
                         <outlet property="chartView" destination="bQu-Nl-bsS" id="jQt-Hs-bWh"/>
                         <outlet property="gradeLabel" destination="fk1-AV-eHG" id="lhV-1z-dsp"/>
+                        <outlet property="parameterButton" destination="ta8-oV-o3O" id="5Mt-rx-3wU"/>
+                        <outlet property="parameterNameLabel" destination="yoe-Vr-h0Z" id="csC-9e-hjW"/>
+                        <outlet property="stationNameLabel" destination="gaz-4U-Tj6" id="aqh-ge-oLt"/>
+                        <outlet property="stationsSection" destination="a8D-F3-QRT" id="tv7-P6-UHn"/>
                         <outlet property="updatedAtLabel" destination="aqO-eg-dhr" id="hNu-jD-mZz"/>
                         <outlet property="updatedAtRow" destination="9Z0-zI-ern" id="Dja-de-cL0"/>
                         <outlet property="valueCircle" destination="d9b-ve-QA0" id="bzd-xg-DFl"/>
@@ -60,7 +101,41 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="219.69230769230771" y="344.79487179487182"/>
+        </scene>
+        <!--Selection List Controller-->
+        <scene sceneID="bJN-ig-kV3">
+            <objects>
+                <controller id="tQh-fT-tIc" customClass="SelectionListController" customModule="SmogWatch_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="kaT-KH-jqX">
+                            <items>
+                                <tableRow identifier="SelectionListRow" id="tDM-gg-ZG9" customClass="SelectionListRow" customModule="SmogWatch_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="62w-0c-mpC">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="eF5-tx-Nex"/>
+                                            <label width="15" alignment="right" verticalAlignment="center" hidden="YES" text="✓" textAlignment="right" id="g5D-7R-GxR">
+                                                <color key="textColor" red="0.39291518926620483" green="0.85138219594955444" blue="0.48621195554733276" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="checkmark" destination="g5D-7R-GxR" id="gD1-CC-12d"/>
+                                        <outlet property="titleLabel" destination="eF5-tx-Nex" id="cpC-PO-bS9"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="kaT-KH-jqX" id="AlH-bx-VSt"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="534" y="345"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4W3-Lx-eMV"/>
+    </inferredMetricsTieBreakers>
 </document>

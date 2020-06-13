@@ -11,6 +11,8 @@ import Foundation
 private let savedPointsKey = "SavedPoints"
 private let lastUpdateDateKey = "LastUpdateDate"
 private let lastConfigUpdateDateKey = "LastConfigUpdateDate"
+private let selectedChannelKey = "SelectedChannel"
+private let selectedStationKey = "SelectedStation"
 
 private let pointsCount = 8
 
@@ -19,14 +21,19 @@ struct DataPoint {
     let value: Double
 }
 
-struct DataStation: Codable {
+protocol SelectableItem {
+    var id: Int { get }
+    var name: String { get }
+}
+
+struct DataStation: Codable, SelectableItem {
     let id: Int
     let name: String
 
     let channels: [DataChannel]
 }
 
-struct DataChannel: Codable {
+struct DataChannel: Codable, SelectableItem {
     let id: Int
     let name: String
     let shortName: String
@@ -40,6 +47,69 @@ class DataStore {
     static let configLoadedNotification = Notification.Name("ConfigLoadedNotification")
 
     private(set) var stations: [DataStation] = []
+
+    var selectedChannelId: Int? {
+        get {
+            return selectedChannel?.id
+        }
+    }
+
+    var selectedChannel: DataChannel? {
+        get {
+            guard let data = defaults.object(forKey: selectedChannelKey) as? Data else { return nil }
+
+            do {
+                return try PropertyListDecoder().decode(DataChannel.self, from: data)
+            } catch let error {
+                NSLog("DataStore: error decoding DataChannel: %@", "\(error)")
+                return nil
+            }
+        }
+
+        set {
+            if let channel = newValue {
+                do {
+                    let data = try PropertyListEncoder().encode(channel)
+                    defaults.set(data, forKey: selectedChannelKey)
+                    invalidateData()
+                } catch let error {
+                    NSLog("DataStore: error encoding DataChannel: %@", "\(error)")
+                }
+            } else {
+                defaults.removeObject(forKey: selectedChannelKey)
+                invalidateData()
+            }
+        }
+    }
+
+    func invalidateData() {
+        defaults.removeObject(forKey: savedPointsKey)
+        defaults.removeObject(forKey: lastUpdateDateKey)
+    }
+
+    var selectedStationId: Int? {
+        get {
+            return defaults.object(forKey: selectedStationKey) as? Int
+        }
+        set {
+            defaults.set(newValue, forKey: selectedStationKey)
+
+            if let stationId = newValue {
+                if let oldChannel = selectedChannel {
+                    guard let station = stations.first(where: { $0.id == stationId }) else {
+                        NSLog("DataStore: error: assigned invalid station id: %d", stationId)
+                        defaults.removeObject(forKey: selectedStationKey)
+                        return
+                    }
+
+                    let newChannel = station.channels.first(where: { $0.name == oldChannel.name })
+                    self.selectedChannel = newChannel
+                }
+            } else {
+                selectedChannel = nil
+            }
+        }
+    }
 
     var currentLevel: Double? {
         get {
@@ -121,5 +191,21 @@ class DataStore {
 
         let data = try PropertyListEncoder().encode(stations)
         try data.write(to: stationsFileName())
+
+        var currentStation: DataStation?
+
+        if let currentStationId = selectedStationId {
+            currentStation = stations.first(where: { $0.id == currentStationId })
+
+            if currentStation == nil {
+                selectedStationId = nil
+            }
+        }
+
+        if let currentChannel = selectedChannel {
+            if currentStation?.channels.first(where: { $0.id == currentChannel.id }) == nil {
+                selectedChannel = nil
+            }
+        }
     }
 }

@@ -19,6 +19,11 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var updatedAtRow: WKInterfaceGroup!
     @IBOutlet var chartView: WKInterfaceImage!
 
+    @IBOutlet var stationsSection: WKInterfaceGroup!
+    @IBOutlet var stationNameLabel: WKInterfaceLabel!
+    @IBOutlet var parameterNameLabel: WKInterfaceLabel!
+    @IBOutlet var parameterButton: WKInterfaceButton!
+
     enum TextAlignment {
         case left, right, center
     }
@@ -31,7 +36,7 @@ class InterfaceController: WKInterfaceController {
 
     let leftChartMargin: CGFloat = 17
     let bottomChartMargin: CGFloat = 10
-    let rightMargin: CGFloat = 4
+    let rightMargin: CGFloat = 10
 
     let chartFontAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor.lightGray,
@@ -39,12 +44,31 @@ class InterfaceController: WKInterfaceController {
     ]
 
     override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-
+        stationsSection.setHidden(true)
         updateDisplayedData()
 
-        NotificationCenter.default.addObserver(forName: DataStore.dataLoadedNotification, object: nil, queue: nil) { _ in
+        let notificationCenter = NotificationCenter.default
+
+        notificationCenter.addObserver(forName: DataStore.dataLoadedNotification, object: nil, queue: nil) { _ in
             self.updateDisplayedData()
+        }
+
+        notificationCenter.addObserver(forName: DataStore.configLoadedNotification, object: nil, queue: nil) { _ in
+            self.updateDisplayedData()
+            self.updateStationLabels()
+            self.stationsSection.setHidden(false)
+        }
+    }
+
+    override func willActivate() {
+        if dataStore.lastConfigUpdateDate != nil {
+            do {
+                try dataStore.loadStations()
+                updateStationLabels()
+                stationsSection.setHidden(false)
+            } catch let error {
+                NSLog("Error loading stations: %@", "\(error)")
+            }
         }
     }
 
@@ -80,6 +104,26 @@ class InterfaceController: WKInterfaceController {
         }
     }
 
+    func updateStationLabels() {
+        let stationId = dataStore.selectedStationId
+
+        if stationId != nil, let station = dataStore.stations.first(where: { $0.id == stationId }) {
+            stationNameLabel.setText(station.name)
+            parameterButton.setEnabled(true)
+            parameterButton.setAlpha(1.0)
+        } else {
+            stationNameLabel.setText("not selected")
+            parameterButton.setEnabled(false)
+            parameterButton.setAlpha(0.4)
+        }
+
+        if let channel = dataStore.selectedChannel {
+            parameterNameLabel.setText(channel.name)
+        } else {
+            parameterNameLabel.setText("not selected")
+        }
+    }
+
     func isSameDay(_ date: Date) -> Bool {
         let calendar = Calendar.current
 
@@ -100,7 +144,7 @@ class InterfaceController: WKInterfaceController {
         context.setStrokeColor(UIColor.lightGray.cgColor)
         context.move(to: CGPoint(x: leftChartMargin, y: 0))
         context.addLine(to: CGPoint(x: leftChartMargin, y: height - bottomChartMargin))
-        context.addLine(to: CGPoint(x: width, y: height - bottomChartMargin))
+        context.addLine(to: CGPoint(x: width - rightMargin + 2, y: height - bottomChartMargin))
         context.drawPath(using: .stroke)
 
         let values = points.map { $0.value }
@@ -183,5 +227,43 @@ class InterfaceController: WKInterfaceController {
 
     func hour(for point: DataPoint) -> Int {
         return Calendar.current.component(.hour, from: point.date)
+    }
+
+    func reloadAfterSelection() {
+        updateStationLabels()
+        updateDisplayedData()
+
+        KrakowPiosDataLoader().fetchData { success in
+            self.updateDisplayedData()
+        }
+    }
+
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "ChooseStation" {
+            return SelectionListContext(
+                items: dataStore.stations.sorted(by: { $0.name < $1.name }),
+                selectedId: dataStore.selectedStationId,
+                title: "Station",
+                onSelect: { id in
+                    self.dataStore.selectedStationId = id
+                    self.reloadAfterSelection()
+                }
+            )
+        } else if segueIdentifier == "ChoosePollutant" {
+            let station = dataStore.stations.first(where: { $0.id == dataStore.selectedStationId })!
+            let channels = station.channels.sorted(by: { $0.name < $1.name })
+
+            return SelectionListContext(
+                items: channels,
+                selectedId: dataStore.selectedChannelId,
+                title: "Pollutant",
+                onSelect: { id in
+                    self.dataStore.selectedChannel = channels.first(where: { $0.id == id })
+                    self.reloadAfterSelection()
+                }
+            )
+        }
+
+        return nil
     }
 }
