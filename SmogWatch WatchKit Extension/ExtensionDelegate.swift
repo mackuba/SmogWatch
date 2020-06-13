@@ -9,6 +9,7 @@
 import WatchKit
 
 private let MinimumIntervalBetweenUpdates: TimeInterval = 5 * 60
+private let ConfigReloadFrequency: TimeInterval = 7 * 86400
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
@@ -23,6 +24,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+    var shouldUpdateConfig: Bool {
+        if let lastUpdate = dataStore.lastConfigUpdateDate {
+            return Date().timeIntervalSince(lastUpdate) > ConfigReloadFrequency
+        } else {
+            return true
+        }
+    }
+
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
 
@@ -31,13 +40,21 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationWillEnterForeground() {
         NSLog("ExtensionDelegate: applicationWillEnterForeground()")
+
+        if shouldUpdateConfig {
+            loader.fetchConfig { success in
+                if success {
+                    NotificationCenter.default.post(name: DataStore.configLoadedNotification, object: nil)
+                }
+            }
+        }
     }
 
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
         if canUpdateDataNow {
-            KrakowPiosDataLoader().fetchData { success in
+            loader.fetchData { success in
                 if success {
                     self.reloadDisplays()
                 }
@@ -68,7 +85,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
                 scheduleNextReload()
 
-                KrakowPiosDataLoader().fetchData { success in
+                loader.fetchData { success in
                     if success {
                         self.reloadDisplays()
                     }

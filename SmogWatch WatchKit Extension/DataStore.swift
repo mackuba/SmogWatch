@@ -10,6 +10,7 @@ import Foundation
 
 private let savedPointsKey = "SavedPoints"
 private let lastUpdateDateKey = "LastUpdateDate"
+private let lastConfigUpdateDateKey = "LastConfigUpdateDate"
 
 private let pointsCount = 8
 
@@ -18,10 +19,27 @@ struct DataPoint {
     let value: Double
 }
 
+struct DataStation: Codable {
+    let id: Int
+    let name: String
+
+    let channels: [DataChannel]
+}
+
+struct DataChannel: Codable {
+    let id: Int
+    let name: String
+    let shortName: String
+    let veryShortName: String
+}
+
 class DataStore {
     let defaults = UserDefaults.standard
 
     static let dataLoadedNotification = Notification.Name("DataLoadedNotification")
+    static let configLoadedNotification = Notification.Name("ConfigLoadedNotification")
+
+    private(set) var stations: [DataStation] = []
 
     var currentLevel: Double? {
         get {
@@ -41,6 +59,15 @@ class DataStore {
         }
         set {
             defaults.set(newValue, forKey: lastUpdateDateKey)
+        }
+    }
+
+    var lastConfigUpdateDate: Date? {
+        get {
+            return defaults.object(forKey: lastConfigUpdateDateKey) as? Date
+        }
+        set {
+            defaults.set(newValue, forKey: lastConfigUpdateDateKey)
         }
     }
 
@@ -71,5 +98,28 @@ class DataStore {
         let encodedData = recentPoints.map { p in [p.date, p.value ]}
 
         defaults.set(encodedData, forKey: savedPointsKey)
+    }
+
+    func stationsFileName() throws -> URL {
+        let dataDirectory = try FileManager.default.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        )
+
+        return dataDirectory.appendingPathComponent("stations.data")
+    }
+
+    func loadStations() throws {
+        let data = try Data(contentsOf: stationsFileName())
+        self.stations = try PropertyListDecoder().decode([DataStation].self, from: data)
+    }
+
+    func saveStations(_ stations: [DataStation]) throws {
+        self.stations = stations
+
+        let data = try PropertyListEncoder().encode(stations)
+        try data.write(to: stationsFileName())
     }
 }
