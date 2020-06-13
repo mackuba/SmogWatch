@@ -23,6 +23,7 @@ extension CLKComplicationFamily: CustomStringConvertible {
         case .utilitarianLarge: return "utilitarianLarge"
         case .utilitarianSmall: return "utilitarianSmall"
         case .utilitarianSmallFlat: return "utilitarianSmallFlat"
+        @unknown default: return "(unknown)"
         }
     }
 }
@@ -33,6 +34,7 @@ extension WKApplicationState: CustomStringConvertible {
         case .active: return "active"
         case .background: return "background"
         case .inactive: return "inactive"
+        @unknown default: return "(unknown)"
         }
     }
 }
@@ -45,6 +47,7 @@ extension WKSnapshotReason: CustomStringConvertible {
         case .complicationUpdate: return "complicationUpdate"
         case .prelaunch: return "prelaunch"
         case .returnToDefaultState: return "returnToDefaultState"
+        @unknown default: return "(unknown)"
         }
     }
 }
