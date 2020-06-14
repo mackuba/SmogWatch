@@ -1,0 +1,12 @@
+GEM
+  specs:
+    CFPropertyList (3.0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  CFPropertyList
+
+BUNDLED WITH
+   1.16.6
