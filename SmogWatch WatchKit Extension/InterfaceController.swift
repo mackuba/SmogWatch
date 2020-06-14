@@ -116,6 +116,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         stationNameLabel.setText(station.name)
 
         updateDisplayedData()
+        gradeLabel.setText("Loading")
 
         KrakowPiosDataLoader().fetchData { success in
             self.updateDisplayedData()
