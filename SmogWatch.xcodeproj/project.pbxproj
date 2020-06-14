@@ -25,6 +25,8 @@
 		8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */; };
 		8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */; };
 		8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32617249291EA0090D0E1 /* SmogLevel.swift */; };
+		8CD32692249543450090D0E1 /* SelectionListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32691249543450090D0E1 /* SelectionListRow.swift */; };
+		8CD32694249543DE0090D0E1 /* SelectionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32693249543DE0090D0E1 /* SelectionListController.swift */; };
 		8CD3269B249690500090D0E1 /* Stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3269A249690500090D0E1 /* Stations.plist */; };
 		8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +98,8 @@
 		8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
 		8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitExtensions.swift; sourceTree = "<group>"; };
 		8CD32617249291EA0090D0E1 /* SmogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmogLevel.swift; sourceTree = "<group>"; };
+		8CD32691249543450090D0E1 /* SelectionListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionListRow.swift; sourceTree = "<group>"; };
+		8CD32693249543DE0090D0E1 /* SelectionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionListController.swift; sourceTree = "<group>"; };
 		8CD3269824964B6A0090D0E1 /* import_channels.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = import_channels.rb; sourceTree = "<group>"; };
 		8CD3269A249690500090D0E1 /* Stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stations.plist; sourceTree = "<group>"; };
 		8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHandler.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */,
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
+				8CD32693249543DE0090D0E1 /* SelectionListController.swift */,
+				8CD32691249543450090D0E1 /* SelectionListRow.swift */,
 				8CD32617249291EA0090D0E1 /* SmogLevel.swift */,
 				8CD3269A249690500090D0E1 /* Stations.plist */,
 				8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */,
@@ -340,7 +346,9 @@
 				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
 				8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */,
 				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
+				8CD32694249543DE0090D0E1 /* SelectionListController.swift in Sources */,
 				8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */,
+				8CD32692249543450090D0E1 /* SelectionListRow.swift in Sources */,
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,

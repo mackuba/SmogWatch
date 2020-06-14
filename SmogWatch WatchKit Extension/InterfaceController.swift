@@ -18,6 +18,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var updatedAtLabel: WKInterfaceLabel!
     @IBOutlet var updatedAtRow: WKInterfaceGroup!
     @IBOutlet var chartView: WKInterfaceImage!
+    @IBOutlet var stationNameLabel: WKInterfaceLabel!
 
     enum TextAlignment {
         case left, right, center
@@ -31,7 +32,7 @@ class InterfaceController: WKInterfaceController {
 
     let leftChartMargin: CGFloat = 17
     let bottomChartMargin: CGFloat = 10
-    let rightMargin: CGFloat = 4
+    let rightMargin: CGFloat = 10
 
     let chartFontAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor.lightGray,
@@ -39,9 +40,8 @@ class InterfaceController: WKInterfaceController {
     ]
 
     override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-
         updateDisplayedData()
+        updateStationInfo()
 
         NotificationCenter.default.addObserver(forName: DataStore.dataLoadedNotification, object: nil, queue: nil) { _ in
             self.updateDisplayedData()
@@ -80,6 +80,16 @@ class InterfaceController: WKInterfaceController {
         }
     }
 
+    func updateStationInfo() {
+        let channelId = dataStore.selectedChannelId
+
+        if channelId != nil, let station = dataStore.stations.first(where: { $0.channelId == channelId }) {
+            stationNameLabel.setText(station.name)
+        } else {
+            stationNameLabel.setText("not selected")
+        }
+    }
+
     func isSameDay(_ date: Date) -> Bool {
         let calendar = Calendar.current
 
@@ -100,7 +110,7 @@ class InterfaceController: WKInterfaceController {
         context.setStrokeColor(UIColor.lightGray.cgColor)
         context.move(to: CGPoint(x: leftChartMargin, y: 0))
         context.addLine(to: CGPoint(x: leftChartMargin, y: height - bottomChartMargin))
-        context.addLine(to: CGPoint(x: width, y: height - bottomChartMargin))
+        context.addLine(to: CGPoint(x: width - rightMargin + 2, y: height - bottomChartMargin))
         context.drawPath(using: .stroke)
 
         let values = points.map { $0.value }
@@ -183,5 +193,30 @@ class InterfaceController: WKInterfaceController {
 
     func hour(for point: DataPoint) -> Int {
         return Calendar.current.component(.hour, from: point.date)
+    }
+
+    func setSelectedStation(_ station: Station) {
+        dataStore.selectedChannelId = station.channelId
+        stationNameLabel.setText(station.name)
+
+        updateDisplayedData()
+
+        KrakowPiosDataLoader().fetchData { success in
+            self.updateDisplayedData()
+        }
+    }
+
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "ChooseStation" {
+            return SelectionListContext(
+                items: dataStore.stations.sorted(by: { $0.name < $1.name }),
+                selectedId: dataStore.selectedChannelId,
+                onSelect: { station in
+                    self.setSelectedStation(station)
+                }
+            )
+        }
+
+        return nil
     }
 }

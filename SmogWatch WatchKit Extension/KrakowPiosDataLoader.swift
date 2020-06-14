@@ -9,7 +9,7 @@
 import Foundation
 import WatchKit
 
-private let DataURL = "http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"
+private let dataURL = "http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"
 
 private struct Response: Decodable {
     let data: ResponseData
@@ -68,7 +68,7 @@ class KrakowPiosDataLoader {
 
     let dataStore = DataStore()
 
-    func queryString() -> String {
+    func queryString(channelId: Int) -> String {
         // data is usually around one hour behind, so at midnight we need to ask for the previous day
         let oneHourAgo = Calendar(identifier: .gregorian).date(byAdding: .hour, value: -1, to: Date())!
 
@@ -78,7 +78,7 @@ class KrakowPiosDataLoader {
             "dateRange": "Day",
             "date": dateFormatter.string(from: oneHourAgo),
             "viewTypeEntityId": "pm10",
-            "channels": [148]
+            "channels": [channelId]
         ]
 
         let jsonData = try! JSONSerialization.data(withJSONObject: query, options: [])
@@ -88,12 +88,19 @@ class KrakowPiosDataLoader {
     }
 
     func fetchData(_ completion: @escaping (Bool) -> ()) {
-        var request = URLRequest(url: URL(string: DataURL)!)
-        request.httpBody = queryString().data(using: .utf8)!
+        guard let channelId = dataStore.selectedChannelId else {
+            NSLog("KrakowPiosDataLoader: no channel selected")
+            completion(false)
+            return
+        }
+
+        let query = queryString(channelId: channelId)
+        var request = URLRequest(url: URL(string: dataURL)!)
+        request.httpBody = query.data(using: .utf8)!
         request.httpMethod = "POST"
 
         NSLog("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...",
-              WKExtension.shared().applicationState.description, DataURL, queryString())
+              WKExtension.shared().applicationState.description, dataURL, query)
 
         let task = session.dataTask(with: request) { (data, response, error) in
             var success = false
