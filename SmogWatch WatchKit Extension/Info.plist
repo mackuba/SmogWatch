@@ -54,5 +54,7 @@
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SmogWatch uses location data to pick a station that&apos;s closest to you.</string>
 </dict>
 </plist>

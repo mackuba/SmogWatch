@@ -6,10 +6,11 @@
 //  Copyright © 2018 Kuba Suder. Licensed under WTFPL license.
 //
 
-import WatchKit
+import CoreLocation
 import Foundation
+import WatchKit
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
 
     @IBOutlet var valueLabel: WKInterfaceLabel!
     @IBOutlet var valueCircle: WKInterfaceGroup!
@@ -22,16 +23,39 @@ class InterfaceController: WKInterfaceController {
     let dataStore = DataStore()
     let dateFormatter = DateFormatter()
     let chartRenderer = ChartRenderer()
+    let locationManager = CLLocationManager()
 
     let shortTimeFormat = DateFormatter.dateFormat(fromTemplate: "H:mm", options: 0, locale: nil)
     let longTimeFormat = DateFormatter.dateFormat(fromTemplate: "E H:mm", options: 0, locale: nil)
+
+    var userLocation: CLLocation?
 
     override func awake(withContext context: Any?) {
         updateDisplayedData()
         updateStationInfo()
 
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+
         NotificationCenter.default.addObserver(forName: DataStore.dataLoadedNotification, object: nil, queue: nil) { _ in
             self.updateDisplayedData()
+        }
+    }
+
+    override func willActivate() {
+        askForLocationIfNeeded()
+    }
+
+    func askForLocationIfNeeded() {
+        guard userLocation == nil, CLLocationManager.locationServicesEnabled() else { return }
+
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        default:
+            break
         }
     }
 
@@ -100,9 +124,21 @@ class InterfaceController: WKInterfaceController {
 
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "ChooseStation" {
+            var stations = dataStore.stations
+
+            if let currentLocation = userLocation {
+                stations.sort { (s1, s2) -> Bool in
+                    let d1 = CLLocation(latitude: s1.lat, longitude: s1.lng).distance(from: currentLocation)
+                    let d2 = CLLocation(latitude: s2.lat, longitude: s2.lng).distance(from: currentLocation)
+
+                    return d1 < d2
+                }
+            }
+
             return SelectionListContext(
-                items: dataStore.stations,
+                items: stations,
                 selectedId: dataStore.selectedChannelId,
+                userLocation: userLocation,
                 onSelect: { station in
                     self.setSelectedStation(station)
                 }
@@ -110,5 +146,22 @@ class InterfaceController: WKInterfaceController {
         }
 
         return nil
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        default:
+            break
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        userLocation = locations.last
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        NSLog("CLLocationManager error: %@", "\(error)")
     }
 }
