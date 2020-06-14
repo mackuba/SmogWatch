@@ -26,22 +26,22 @@ config = JSON.parse(data)
 all_channels = config['config']['channels']
 all_stations = config['config']['stations']
 
-stations = all_stations.map do |j|
+stations = all_stations.map { |j|
     pm10_channel = all_channels.detect { |c| c['station_id'] == j['id'] && c['param_id'] == 'pm10' }
     data = stations_data.detect { |d| d['detailsPath'].end_with?("/#{j['id']}") }
 
     if pm10_channel && data
         {
-            'id': j['id'],
-            'name': j['name'],
-            'channelId': pm10_channel['channel_id'],
-            'lat': data['position']['lat'],
-            'lng': data['position']['lng']
+            'id' => j['id'],
+            'name' => j['name'],
+            'channelId' => pm10_channel['channel_id'],
+            'lat' => data['position']['lat'],
+            'lng' => data['position']['lng']
         }
     else
         nil
     end
-end.compact
+}.compact.sort_by { |j| j['name'].downcase }
 
 output_path = File.expand_path(File.join(__FILE__, '..', '..',
     'SmogWatch WatchKit Extension', 'Stations.plist'))

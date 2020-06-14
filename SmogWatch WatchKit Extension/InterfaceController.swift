@@ -209,7 +209,7 @@ class InterfaceController: WKInterfaceController {
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "ChooseStation" {
             return SelectionListContext(
-                items: dataStore.stations.sorted(by: { $0.name < $1.name }),
+                items: dataStore.stations,
                 selectedId: dataStore.selectedChannelId,
                 onSelect: { station in
                     self.setSelectedStation(station)
