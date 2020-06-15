@@ -132,17 +132,23 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         }
     }
 
+    func stationsSortedByDistance(from userLocation: CLLocation) -> [Station] {
+        return dataStore.stations.sorted { (s1, s2) -> Bool in
+            let d1 = CLLocation(latitude: s1.lat, longitude: s1.lng).distance(from: userLocation)
+            let d2 = CLLocation(latitude: s2.lat, longitude: s2.lng).distance(from: userLocation)
+
+            return d1 < d2
+        }
+    }
+
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "ChooseStation" {
-            var stations = dataStore.stations
+            let stations: [Station]
 
             if let currentLocation = userLocation {
-                stations.sort { (s1, s2) -> Bool in
-                    let d1 = CLLocation(latitude: s1.lat, longitude: s1.lng).distance(from: currentLocation)
-                    let d2 = CLLocation(latitude: s2.lat, longitude: s2.lng).distance(from: currentLocation)
-
-                    return d1 < d2
-                }
+                stations = stationsSortedByDistance(from: currentLocation)
+            } else {
+                stations = dataStore.stations
             }
 
             return SelectionListContext(
@@ -168,7 +174,14 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        userLocation = locations.last
+        guard let currentLocation = locations.last else { return }
+
+        userLocation = currentLocation
+
+        if dataStore.selectedChannelId == nil {
+            let closestStation = stationsSortedByDistance(from: currentLocation).first!
+            setSelectedStation(closestStation)
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
