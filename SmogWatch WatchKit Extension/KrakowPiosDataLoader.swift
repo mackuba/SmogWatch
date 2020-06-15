@@ -68,7 +68,7 @@ class KrakowPiosDataLoader {
 
     let dataStore = DataStore()
 
-    func queryString(channelId: Int) -> String {
+    func queryString(channelId: Int, date: Date? = nil) -> String {
         // data is usually around one hour behind, so at midnight we need to ask for the previous day
         let oneHourAgo = Calendar(identifier: .gregorian).date(byAdding: .hour, value: -1, to: Date())!
 
@@ -76,7 +76,7 @@ class KrakowPiosDataLoader {
             "measType": "Auto",
             "viewType": "Parameter",
             "dateRange": "Day",
-            "date": dateFormatter.string(from: oneHourAgo),
+            "date": dateFormatter.string(from: date ?? oneHourAgo),
             "viewTypeEntityId": "pm10",
             "channels": [channelId]
         ]
@@ -87,14 +87,14 @@ class KrakowPiosDataLoader {
         return "query=\(json)"
     }
 
-    func fetchData(_ completion: @escaping (Bool) -> ()) {
+    func fetchData(date: Date? = nil, _ completion: @escaping (Bool) -> ()) {
         guard let channelId = dataStore.selectedChannelId else {
             NSLog("KrakowPiosDataLoader: no channel selected")
             completion(false)
             return
         }
 
-        let query = queryString(channelId: channelId)
+        let query = queryString(channelId: channelId, date: date)
         var request = URLRequest(url: URL(string: dataURL)!)
         request.httpBody = query.data(using: .utf8)!
         request.httpMethod = "POST"
@@ -117,9 +117,13 @@ class KrakowPiosDataLoader {
                             self.dataStore.addPoints(
                                 series.points.map({ DataPoint(date: $0.date, value: $0.value )})
                             )
-                            self.dataStore.lastUpdateDate = Date()
 
-                            NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", lastPoint.value, "\(lastPoint.date)")
+                            if date == nil {
+                                self.dataStore.lastUpdateDate = Date()
+                                NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", lastPoint.value, "\(lastPoint.date)")
+                            } else {
+                                NSLog("KrakowPiosDataLoader: added data from %@", "\(date!)")
+                            }
 
                             success = true
                         }

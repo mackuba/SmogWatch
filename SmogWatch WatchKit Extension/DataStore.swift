@@ -12,7 +12,7 @@ private let savedPointsKey = "SavedPoints"
 private let lastUpdateDateKey = "LastUpdateDate"
 private let selectedChannelIdKey = "SelectedChannelId"
 
-private let pointsCount = 8
+private let pointsLimit = 8
 
 struct DataPoint {
     let date: Date
@@ -48,6 +48,10 @@ class DataStore {
     func invalidateData() {
         defaults.removeObject(forKey: savedPointsKey)
         defaults.removeObject(forKey: lastUpdateDateKey)
+    }
+
+    var hasEnoughPoints: Bool {
+        points.count >= pointsLimit
     }
 
     var currentLevel: Double? {
@@ -94,7 +98,7 @@ class DataStore {
         newPoints.forEach { p in pointMap[p.date] = p }
 
         let allPoints = pointMap.keys.sorted().map { date in pointMap[date]! }
-        let recentPoints = Array(allPoints.suffix(pointsCount))
+        let recentPoints = Array(allPoints.suffix(pointsLimit))
         let encodedData = recentPoints.map { p in [p.date, p.value ]}
 
         defaults.set(encodedData, forKey: savedPointsKey)

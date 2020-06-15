@@ -21,6 +21,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     @IBOutlet var stationNameLabel: WKInterfaceLabel!
 
     let dataStore = DataStore()
+    let dataLoader = KrakowPiosDataLoader()
     let dateFormatter = DateFormatter()
     let chartRenderer = ChartRenderer()
     let locationManager = CLLocationManager()
@@ -118,8 +119,16 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         updateDisplayedData()
         gradeLabel.setText("Loading")
 
-        KrakowPiosDataLoader().fetchData { success in
+        dataLoader.fetchData { success in
             self.updateDisplayedData()
+
+            if !self.dataStore.hasEnoughPoints {
+                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+
+                self.dataLoader.fetchData(date: yesterday) { success in
+                    self.updateDisplayedData()
+                }
+            }
         }
     }
 
