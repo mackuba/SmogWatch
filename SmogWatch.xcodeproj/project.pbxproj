@@ -29,6 +29,7 @@
 		8CD32694249543DE0090D0E1 /* SelectionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32693249543DE0090D0E1 /* SelectionListController.swift */; };
 		8CD3269B249690500090D0E1 /* Stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CD3269A249690500090D0E1 /* Stations.plist */; };
 		8CD3269D24969B630090D0E1 /* ChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3269C24969B630090D0E1 /* ChartRenderer.swift */; };
+		8CD3269F2497B22C0090D0E1 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD3269E2497B22B0090D0E1 /* DataManager.swift */; };
 		8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		8CD3269824964B6A0090D0E1 /* import_channels.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = import_channels.rb; sourceTree = "<group>"; };
 		8CD3269A249690500090D0E1 /* Stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stations.plist; sourceTree = "<group>"; };
 		8CD3269C24969B630090D0E1 /* ChartRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRenderer.swift; sourceTree = "<group>"; };
+		8CD3269E2497B22B0090D0E1 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +179,7 @@
 				8CD3269C24969B630090D0E1 /* ChartRenderer.swift */,
 				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
 				8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */,
+				8CD3269E2497B22B0090D0E1 /* DataManager.swift */,
 				8C2A472321CEEAAA0029E4BC /* DataStore.swift */,
 				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
@@ -356,6 +359,7 @@
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
+				8CD3269F2497B22C0090D0E1 /* DataManager.swift in Sources */,
 				8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

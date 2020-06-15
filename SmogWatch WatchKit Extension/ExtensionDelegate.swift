@@ -8,20 +8,10 @@
 
 import WatchKit
 
-private let MinimumIntervalBetweenUpdates: TimeInterval = 5 * 60
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
-    let loader = KrakowPiosDataLoader()
-    let dataStore = DataStore()
-
-    var canUpdateDataNow: Bool {
-        if let lastUpdate = dataStore.lastUpdateDate {
-            return Date().timeIntervalSince(lastUpdate) > MinimumIntervalBetweenUpdates
-        } else {
-            return true
-        }
-    }
+    let dataManager = DataManager()
 
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
@@ -36,15 +26,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
-        if canUpdateDataNow {
-            KrakowPiosDataLoader().fetchData { success in
-                if success {
-                    self.reloadDisplays()
-                }
-            }
-        } else {
-            NSLog("ExtensionDelegate: not loading data since it was last updated at \(dataStore.lastUpdateDate!)")
-        }
+        dataManager.updateDataIfNeeded()
     }
 
     func applicationWillResignActive() {
@@ -68,13 +50,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
                 scheduleNextReload()
 
-                KrakowPiosDataLoader().fetchData { success in
-                    if success {
-                        self.reloadDisplays()
-                    }
-
+                dataManager.updateData { success in
                     NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
-                    // Be sure to complete the background task once you’re done.
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -102,17 +79,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 // make sure to complete unhandled task types
                 task.setTaskCompletedWithSnapshot(false)
             }
-        }
-    }
-
-    func reloadDisplays() {
-        NotificationCenter.default.post(name: DataStore.dataLoadedNotification, object: nil)
-        let server = CLKComplicationServer.sharedInstance()
-
-        NSLog("ExtensionDelegate: requesting reload of complications")
-        for complication in server.activeComplications ?? [] {
-            NSLog("- %@", complication.family.description)
-            server.reloadTimeline(for: complication)
         }
     }
 

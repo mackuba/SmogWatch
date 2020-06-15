@@ -21,7 +21,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     @IBOutlet var stationNameLabel: WKInterfaceLabel!
 
     let dataStore = DataStore()
-    let dataLoader = KrakowPiosDataLoader()
+    let dataManager = DataManager()
     let dateFormatter = DateFormatter()
     let chartRenderer = ChartRenderer()
     let locationManager = CLLocationManager()
@@ -119,17 +119,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
         updateDisplayedData()
         gradeLabel.setText("Loading")
 
-        dataLoader.fetchData { success in
-            self.updateDisplayedData()
-
-            if !self.dataStore.hasEnoughPoints {
-                let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-
-                self.dataLoader.fetchData(date: yesterday) { success in
-                    self.updateDisplayedData()
-                }
-            }
-        }
+        dataManager.updateData()
     }
 
     func stationsSortedByDistance(from userLocation: CLLocation) -> [Station] {
