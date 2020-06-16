@@ -55,15 +55,11 @@ class DataStore {
     }
 
     var currentLevel: Double? {
-        get {
-            return points.last?.value
-        }
+        points.last?.value
     }
 
     var lastMeasurementDate: Date? {
-        get {
-            return points.last?.date
-        }
+        points.last?.date
     }
 
     var lastUpdateDate: Date? {
@@ -76,17 +72,15 @@ class DataStore {
     }
 
     var points: [DataPoint] {
-        get {
-            guard let tuples = defaults.object(forKey: savedPointsKey) as? [[Any]] else {
-                return []
-            }
+        guard let tuples = defaults.object(forKey: savedPointsKey) as? [[Any]] else {
+            return []
+        }
 
-            return tuples.compactMap { t in
-                if t.count == 2, let date = t[0] as? Date, let value = t[1] as? Double {
-                    return DataPoint(date: date, value: value)
-                } else {
-                    return nil
-                }
+        return tuples.compactMap { t in
+            if t.count == 2, let date = t[0] as? Date, let value = t[1] as? Double {
+                return DataPoint(date: date, value: value)
+            } else {
+                return nil
             }
         }
     }
