@@ -21,23 +21,21 @@ class SelectionListController: WKInterfaceController {
     var selectedRowIndex: Int? = nil
     var items: [Station] = []
     var selectionHandler: ((Station) -> ())?
-    var userLocation: CLLocation?
 
     override func awake(withContext context: Any?) {
         let context = context as! SelectionListContext
 
         items = context.items
         selectionHandler = context.onSelect
-        userLocation = context.userLocation
 
-        let rowType = (userLocation == nil) ? "BasicListRow" : "ListRowWithDistance"
+        let rowType = (context.userLocation == nil) ? "BasicListRow" : "ListRowWithDistance"
         table.setNumberOfRows(items.count, withRowType: rowType)
 
         for i in 0..<items.count {
-            let row = table.rowController(at: i) as! SelectionListRow
+            let row = listRowController(at: i)
             row.setTitle(items[i].name)
 
-            if let location = userLocation {
+            if let location = context.userLocation {
                 let itemLocation = CLLocation(latitude: items[i].lat, longitude: items[i].lng)
                 row.setDistance(location.distance(from: itemLocation))
             }
