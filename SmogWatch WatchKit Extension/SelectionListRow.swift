@@ -16,14 +16,24 @@ class SelectionListRow: NSObject {
 
     let defaultInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0)
     let checkmarkInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 15)
+    let measurementFormatter: MeasurementFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale(identifier: "pl")
+        numberFormatter.maximumFractionDigits = 1
+
+        let measurementFormatter = MeasurementFormatter()
+        measurementFormatter.locale = Locale(identifier: "pl")
+        measurementFormatter.numberFormatter = numberFormatter
+        return measurementFormatter
+    }()
 
     func setTitle(_ title: String) {
         titleLabel.setText(title)
     }
 
     func setDistance(_ distance: Double) {
-        let s = String(format: "%.1f km", distance / 1000)
-        distanceLabel.setText(s)
+        let text = measurementFormatter.string(from: Measurement(value: distance, unit: UnitLength.meters))
+        distanceLabel.setText(text)
     }
 
     func setCheckmarkVisible(_ visible: Bool) {
