@@ -12,10 +12,7 @@ class SelectionListRow: NSObject {
     @IBOutlet weak var titleLabel: WKInterfaceLabel!
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
     @IBOutlet weak var checkmark: WKInterfaceLabel!
-    @IBOutlet weak var mainGroup: WKInterfaceGroup!
 
-    let defaultInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0)
-    let checkmarkInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 15)
     let measurementFormatter: MeasurementFormatter = {
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale(identifier: "pl")
@@ -38,6 +35,5 @@ class SelectionListRow: NSObject {
 
     func setCheckmarkVisible(_ visible: Bool) {
         checkmark.setHidden(!visible)
-        mainGroup?.setContentInset(visible ? checkmarkInsets : defaultInsets)
     }
 }

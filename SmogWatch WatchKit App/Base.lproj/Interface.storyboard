@@ -48,7 +48,7 @@
                         </group>
                         <group width="1" alignment="left" id="krT-IZ-fcv">
                             <items>
-                                <imageView height="65" alignment="left" contentMode="left" id="bQu-Nl-bsS"/>
+                                <imageView alignment="left" contentMode="left" id="bQu-Nl-bsS"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="15"/>
                         </group>
@@ -56,7 +56,7 @@
                             <group key="contentGroup" width="1" alignment="left" layout="vertical" id="XFM-mB-b7b">
                                 <items>
                                     <label alignment="left" text="Choose Station" id="19e-hf-Hcc"/>
-                                    <label height="17" alignment="left" text="Kraków, os. Swoszowice" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="gaz-4U-Tj6">
+                                    <label alignment="left" text="Kraków, os. Swoszowice" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="gaz-4U-Tj6">
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                     </label>
@@ -104,19 +104,19 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="ListRowWithDistance" id="RP6-6p-w9Y" customClass="SelectionListRow" customModule="SmogWatch_WatchKit_Extension">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="overlap" id="eOu-hv-16A">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="0.0" id="eOu-hv-16A">
                                         <items>
-                                            <group width="1" alignment="left" layout="vertical" id="hrd-aE-Vbx">
+                                            <group alignment="left" layout="vertical" id="hrd-aE-Vbx">
                                                 <items>
                                                     <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="9zT-4C-3Qw"/>
-                                                    <label alignment="left" verticalAlignment="center" text="3.2 km" minimumScaleFactor="0.80000000000000004" id="gT6-QL-ybG">
+                                                    <label alignment="left" verticalAlignment="center" text="3.2 km" id="gT6-QL-ybG">
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                     </label>
                                                 </items>
                                                 <edgeInsets key="margins" left="0.0" right="0.0" top="3" bottom="3"/>
                                             </group>
-                                            <label alignment="right" verticalAlignment="center" hidden="YES" text="✓" textAlignment="right" id="6Qf-v6-i8y">
+                                            <label width="15" alignment="right" verticalAlignment="center" hidden="YES" text="✓" textAlignment="right" id="6Qf-v6-i8y">
                                                 <color key="textColor" red="0.39291518930000002" green="0.85138219589999997" blue="0.48621195550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </label>
                                         </items>
@@ -124,7 +124,6 @@
                                     <connections>
                                         <outlet property="checkmark" destination="6Qf-v6-i8y" id="JOc-yW-Ant"/>
                                         <outlet property="distanceLabel" destination="gT6-QL-ybG" id="WtF-8J-Y80"/>
-                                        <outlet property="mainGroup" destination="hrd-aE-Vbx" id="Dnz-WD-LLq"/>
                                         <outlet property="titleLabel" destination="9zT-4C-3Qw" id="iSD-K4-gOi"/>
                                     </connections>
                                 </tableRow>
