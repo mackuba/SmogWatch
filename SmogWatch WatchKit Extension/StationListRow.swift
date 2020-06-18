@@ -1,5 +1,5 @@
 //
-//  SelectionListRow.swift
+//  StationListRow.swift
 //  SmogWatch WatchKit Extension
 //
 //  Created by Kuba Suder on 13.06.2020.
@@ -8,7 +8,7 @@
 
 import WatchKit
 
-class SelectionListRow: NSObject {
+class StationListRow: NSObject {
     @IBOutlet weak var titleLabel: WKInterfaceLabel!
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
     @IBOutlet weak var checkmark: WKInterfaceLabel!

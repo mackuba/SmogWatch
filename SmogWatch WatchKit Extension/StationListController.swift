@@ -1,5 +1,5 @@
 //
-//  SelectionListController.swift
+//  StationListController.swift
 //  SmogWatch WatchKit Extension
 //
 //  Created by Kuba Suder on 13.06.2020.
@@ -8,14 +8,14 @@
 
 import WatchKit
 
-struct SelectionListContext {
+struct StationListContext {
     let items: [Station]
     let selectedId: Int?
     let userLocation: CLLocation?
     let onSelect: ((Station) -> ())
 }
 
-class SelectionListController: WKInterfaceController {
+class StationListController: WKInterfaceController {
     @IBOutlet weak var table: WKInterfaceTable!
 
     var selectedRowIndex: Int? = nil
@@ -23,7 +23,7 @@ class SelectionListController: WKInterfaceController {
     var selectionHandler: ((Station) -> ())?
 
     override func awake(withContext context: Any?) {
-        let context = context as! SelectionListContext
+        let context = context as! StationListContext
 
         items = context.items
         selectionHandler = context.onSelect
@@ -60,7 +60,7 @@ class SelectionListController: WKInterfaceController {
         selectionHandler?(items[rowIndex])
     }
 
-    func listRowController(at index: Int) -> SelectionListRow {
-        return table.rowController(at: index) as! SelectionListRow
+    func listRowController(at index: Int) -> StationListRow {
+        return table.rowController(at: index) as! StationListRow
     }
 }

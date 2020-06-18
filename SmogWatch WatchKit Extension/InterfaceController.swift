@@ -141,7 +141,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
                 stations = dataStore.stations
             }
 
-            return SelectionListContext(
+            return StationListContext(
                 items: stations,
                 selectedId: dataStore.selectedChannelId,
                 userLocation: userLocation,

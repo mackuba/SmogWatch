@@ -85,11 +85,11 @@
         <!--Station-->
         <scene sceneID="bJN-ig-kV3">
             <objects>
-                <controller title="Station" id="tQh-fT-tIc" customClass="SelectionListController" customModule="SmogWatch_WatchKit_Extension">
+                <controller title="Station" id="tQh-fT-tIc" customClass="StationListController" customModule="SmogWatch_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="kaT-KH-jqX">
                             <items>
-                                <tableRow identifier="BasicListRow" id="tDM-gg-ZG9" customClass="SelectionListRow" customModule="SmogWatch_WatchKit_Extension">
+                                <tableRow identifier="BasicListRow" id="tDM-gg-ZG9" customClass="StationListRow" customModule="SmogWatch_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="62w-0c-mpC">
                                         <items>
                                             <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="eF5-tx-Nex"/>
@@ -103,7 +103,7 @@
                                         <outlet property="titleLabel" destination="eF5-tx-Nex" id="cpC-PO-bS9"/>
                                     </connections>
                                 </tableRow>
-                                <tableRow identifier="ListRowWithDistance" id="RP6-6p-w9Y" customClass="SelectionListRow" customModule="SmogWatch_WatchKit_Extension">
+                                <tableRow identifier="ListRowWithDistance" id="RP6-6p-w9Y" customClass="StationListRow" customModule="SmogWatch_WatchKit_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" spacing="0.0" id="eOu-hv-16A">
                                         <items>
                                             <group alignment="left" layout="vertical" id="hrd-aE-Vbx">
