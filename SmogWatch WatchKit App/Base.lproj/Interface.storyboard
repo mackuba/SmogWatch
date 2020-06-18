@@ -17,7 +17,7 @@
                                 <label alignment="center" text="PM10" id="kPh-Ka-R4N">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                 </label>
-                                <group width="100" height="100" alignment="center" verticalAlignment="center" layout="overlap" radius="48" id="d9b-ve-QA0">
+                                <group width="100" height="100" alignment="center" radius="48" id="d9b-ve-QA0">
                                     <items>
                                         <label alignment="center" verticalAlignment="center" text="32" id="PDF-fB-VzR">
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.79772777286901408" colorSpace="calibratedRGB"/>
@@ -30,7 +30,7 @@
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <variation key="device=watch38mm" height="90" radius="43" width="90"/>
                                 </group>
-                                <label alignment="center" verticalAlignment="bottom" text="Good" id="fk1-AV-eHG">
+                                <label alignment="center" text="Good" id="fk1-AV-eHG">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                 </label>
                             </items>
@@ -48,7 +48,7 @@
                         </group>
                         <group width="1" alignment="left" id="krT-IZ-fcv">
                             <items>
-                                <imageView alignment="left" contentMode="left" id="bQu-Nl-bsS"/>
+                                <imageView alignment="left" id="bQu-Nl-bsS"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="15"/>
                         </group>
@@ -56,7 +56,7 @@
                             <group key="contentGroup" width="1" alignment="left" layout="vertical" id="XFM-mB-b7b">
                                 <items>
                                     <label alignment="left" text="Choose Station" id="19e-hf-Hcc"/>
-                                    <label alignment="left" text="Kraków, os. Swoszowice" textAlignment="left" minimumScaleFactor="0.90000000000000002" id="gaz-4U-Tj6">
+                                    <label alignment="left" text="Kraków, os. Swoszowice" minimumScaleFactor="0.90000000000000002" id="gaz-4U-Tj6">
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                     </label>
@@ -108,8 +108,8 @@
                                         <items>
                                             <group alignment="left" layout="vertical" id="hrd-aE-Vbx">
                                                 <items>
-                                                    <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="9zT-4C-3Qw"/>
-                                                    <label alignment="left" verticalAlignment="center" text="3.2 km" id="gT6-QL-ybG">
+                                                    <label alignment="left" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="9zT-4C-3Qw"/>
+                                                    <label alignment="left" text="3.2 km" id="gT6-QL-ybG">
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                     </label>
