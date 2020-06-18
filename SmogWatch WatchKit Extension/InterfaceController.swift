@@ -26,8 +26,8 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     let chartRenderer = ChartRenderer()
     let locationManager = CLLocationManager()
 
-    let shortTimeFormat = DateFormatter.dateFormat(fromTemplate: "H:mm", options: 0, locale: nil)
-    let longTimeFormat = DateFormatter.dateFormat(fromTemplate: "E H:mm", options: 0, locale: nil)
+    let shortTimeFormat = DateFormatter.dateFormat(fromTemplate: "j:m", options: 0, locale: Locale.current)
+    let longTimeFormat = DateFormatter.dateFormat(fromTemplate: "E j:m", options: 0, locale: Locale.current)
 
     var userLocation: CLLocation?
 
