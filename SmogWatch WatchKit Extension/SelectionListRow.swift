@@ -15,11 +15,9 @@ class SelectionListRow: NSObject {
 
     let measurementFormatter: MeasurementFormatter = {
         let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale(identifier: "pl")
         numberFormatter.maximumFractionDigits = 1
 
         let measurementFormatter = MeasurementFormatter()
-        measurementFormatter.locale = Locale(identifier: "pl")
         measurementFormatter.numberFormatter = numberFormatter
         return measurementFormatter
     }()
