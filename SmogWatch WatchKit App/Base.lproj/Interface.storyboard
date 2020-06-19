@@ -7,10 +7,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--SmogWatch-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target">
+                <controller title="SmogWatch" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" spacing="10" id="S6a-47-y5j">
                             <items>
