@@ -35,6 +35,12 @@
                                 </label>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
+                            <variation key="device=watch38mm">
+                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
+                            </variation>
+                            <variation key="device=watch44mm">
+                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
+                            </variation>
                         </group>
                         <group alignment="center" spacing="4" id="9Z0-zI-ern">
                             <items>
