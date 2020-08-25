@@ -12,7 +12,7 @@
             <objects>
                 <controller title="SmogWatch" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" alignment="left" layout="vertical" spacing="8" id="S6a-47-y5j">
+                        <group width="1" alignment="left" layout="vertical" spacing="7" id="S6a-47-y5j">
                             <items>
                                 <label alignment="center" text="PM10" id="kPh-Ka-R4N">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
@@ -35,7 +35,7 @@
                                 </label>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
-                            <variation key="device=watch38mm">
+                            <variation key="device=watch40mm">
                                 <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
                             </variation>
                             <variation key="device=watch44mm">
