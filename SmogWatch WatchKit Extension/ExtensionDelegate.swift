@@ -39,7 +39,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         if canUpdateDataNow {
             KrakowPiosDataLoader().fetchData { success in
                 if success {
-                    self.reloadActiveComplications()
+                    self.reloadDisplays()
                 }
             }
         } else {
@@ -70,7 +70,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
                 KrakowPiosDataLoader().fetchData { success in
                     if success {
-                        self.reloadActiveComplications()
+                        self.reloadDisplays()
                     }
 
                     NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
@@ -105,7 +105,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
-    func reloadActiveComplications() {
+    func reloadDisplays() {
+        NotificationCenter.default.post(name: DataStore.dataLoadedNotification, object: nil)
+
         let server = CLKComplicationServer.sharedInstance()
 
         NSLog("ExtensionDelegate: requesting reload of complications")

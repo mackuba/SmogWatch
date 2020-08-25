@@ -106,12 +106,13 @@ class KrakowPiosDataLoader {
             if let data = data {
                 if let response = try? JSONDecoder().decode(Response.self, from: data) {
                     if let series = response.data.series.first {
-                        if let point = series.points.last {
-                            self.dataStore.currentLevel = point.value
-                            self.dataStore.lastMeasurementDate = point.date
+                        if let lastPoint = series.points.last {
+                            self.dataStore.addPoints(
+                                series.points.map({ DataPoint(date: $0.date, value: $0.value )})
+                            )
                             self.dataStore.lastUpdateDate = Date()
 
-                            NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", point.value, "\(point.date)")
+                            NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", lastPoint.value, "\(lastPoint.date)")
 
                             success = true
                         }

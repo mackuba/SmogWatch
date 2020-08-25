@@ -7,43 +7,70 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--SmogWatch-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="220" y="345"/>
-        </scene>
-        <!--Static Notification Interface Controller-->
-        <scene sceneID="AEw-b0-oYE">
-            <objects>
-                <notificationController id="YCC-NB-fut">
+                <controller title="SmogWatch" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                        <group width="1" alignment="left" layout="vertical" spacing="7" id="Rfr-af-BKQ">
+                            <items>
+                                <label alignment="center" text="PM10" id="5tg-QP-GsC">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
+                                <group width="100" height="100" alignment="center" radius="48" id="3Z8-Ca-Dh0">
+                                    <items>
+                                        <label alignment="center" verticalAlignment="center" text="32" id="6MO-oS-DYP">
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80488006161971826" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="42"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" type="system" pointSize="40"/>
+                                            </variation>
+                                        </label>
+                                    </items>
+                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <variation key="device=watch38mm" height="90" radius="43" width="90"/>
+                                </group>
+                                <label alignment="center" text="Good" id="ayl-Vh-FVA">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
+                            <variation key="device=watch40mm">
+                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
+                            </variation>
+                            <variation key="device=watch44mm">
+                                <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
+                            </variation>
+                        </group>
+                        <group alignment="center" id="kL9-b5-jlL">
+                            <items>
+                                <label alignment="left" text="Updated:" id="qcU-zM-DV5">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                                <label alignment="left" text="15:00" id="BcV-HS-HbD">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                        </group>
+                        <group width="1" alignment="left" id="V7y-EB-eeu">
+                            <items>
+                                <imageView alignment="left" id="3Op-PI-IYy"/>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="15"/>
+                        </group>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                        <outlet property="chartView" destination="3Op-PI-IYy" id="wcI-IU-xKR"/>
+                        <outlet property="gradeLabel" destination="ayl-Vh-FVA" id="4V0-P5-K8R"/>
+                        <outlet property="updatedAtLabel" destination="BcV-HS-HbD" id="xxB-nm-wdQ"/>
+                        <outlet property="updatedAtRow" destination="kL9-b5-jlL" id="3EN-Gp-Bi8"/>
+                        <outlet property="valueCircle" destination="3Z8-Ca-Dh0" id="b3v-4v-TTB"/>
+                        <outlet property="valueLabel" destination="6MO-oS-DYP" id="8ns-Nd-3q3"/>
                     </connections>
-                </notificationController>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
-            <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="Niz-AI-uX2">
-            <objects>
-                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="SmogWatch_WatchKit_App" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="345"/>
+            <point key="canvasLocation" x="230" y="364"/>
         </scene>
     </scenes>
 </document>
