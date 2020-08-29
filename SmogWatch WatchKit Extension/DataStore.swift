@@ -14,6 +14,8 @@ private let selectedChannelIdKey = "SelectedChannelId"
 
 private let pointsLimit = 8
 
+let dataStore = DataStore()
+
 struct DataPoint {
     let date: Date
     let value: Double

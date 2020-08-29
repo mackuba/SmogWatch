@@ -66,8 +66,6 @@ class KrakowPiosDataLoader {
         return URLSession(configuration: config)
     }()
 
-    let dataStore = DataStore()
-
     func queryString(channelId: Int, date: Date? = nil) -> String {
         // data is usually around one hour behind, so at midnight we need to ask for the previous day
         let oneHourAgo = Calendar(identifier: .gregorian).date(byAdding: .hour, value: -1, to: Date())!
@@ -101,6 +99,7 @@ class KrakowPiosDataLoader {
 
         NSLog("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...",
               WKExtension.shared().applicationState.description, dataURL, query)
+        logStore.log(message: "sending_request")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             var success = false
@@ -114,12 +113,14 @@ class KrakowPiosDataLoader {
                 if let response = try? JSONDecoder().decode(Response.self, from: data) {
                     if let series = response.data.series.first {
                         if let lastPoint = series.points.last {
-                            self.dataStore.addPoints(
+                            dataStore.addPoints(
                                 series.points.map({ DataPoint(date: $0.date, value: $0.value )})
                             )
 
+                            logStore.log(message: "received_data (\(Int(lastPoint.value)))")
+
                             if date == nil {
-                                self.dataStore.lastUpdateDate = Date()
+                                dataStore.lastUpdateDate = Date()
                                 NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", lastPoint.value, "\(lastPoint.date)")
                             } else {
                                 NSLog("KrakowPiosDataLoader: added data from %@", "\(date!)")

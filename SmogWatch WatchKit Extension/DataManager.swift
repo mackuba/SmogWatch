@@ -57,7 +57,10 @@ class DataManager {
 
         NSLog("DataManager: requesting reload of complications")
 
-        for complication in server.activeComplications ?? [] {
+        let complications = server.activeComplications
+        logStore.log(message: "reloading \(complications != nil ? "\(complications!.count)" : "?") complications")
+
+        for complication in complications ?? [] {
             NSLog("- %@", complication.family.description)
             server.reloadTimeline(for: complication)
         }

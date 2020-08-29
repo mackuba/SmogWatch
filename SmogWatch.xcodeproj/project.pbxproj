@@ -24,6 +24,8 @@
 		8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472321CEEAAA0029E4BC /* DataStore.swift */; };
 		8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */; };
 		8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */; };
+		8C53457324FB05E8009F769B /* LogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53457224FB05E8009F769B /* LogStore.swift */; };
+		8C53457524FB0748009F769B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C53457424FB0748009F769B /* ContentView.swift */; };
 		8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32617249291EA0090D0E1 /* SmogLevel.swift */; };
 		8CD32692249543450090D0E1 /* StationListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32691249543450090D0E1 /* StationListRow.swift */; };
 		8CD32694249543DE0090D0E1 /* StationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD32693249543DE0090D0E1 /* StationListController.swift */; };
@@ -99,6 +101,8 @@
 		8C2A472321CEEAAA0029E4BC /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrakowPiosDataLoader.swift; sourceTree = "<group>"; };
 		8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitExtensions.swift; sourceTree = "<group>"; };
+		8C53457224FB05E8009F769B /* LogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogStore.swift; sourceTree = "<group>"; };
+		8C53457424FB0748009F769B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8CD32617249291EA0090D0E1 /* SmogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmogLevel.swift; sourceTree = "<group>"; };
 		8CD32691249543450090D0E1 /* StationListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListRow.swift; sourceTree = "<group>"; };
 		8CD32693249543DE0090D0E1 /* StationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListController.swift; sourceTree = "<group>"; };
@@ -179,12 +183,14 @@
 				8CD3269C24969B630090D0E1 /* ChartRenderer.swift */,
 				8C2A470621C5523C0029E4BC /* ComplicationController.swift */,
 				8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */,
+				8C53457424FB0748009F769B /* ContentView.swift */,
 				8CD3269E2497B22B0090D0E1 /* DataManager.swift */,
 				8C2A472321CEEAAA0029E4BC /* DataStore.swift */,
 				8C2A470221C5523C0029E4BC /* ExtensionDelegate.swift */,
 				8C2A470A21C5523C0029E4BC /* Info.plist */,
 				8C2A470021C5523C0029E4BC /* InterfaceController.swift */,
 				8C2A472521CEF41B0029E4BC /* KrakowPiosDataLoader.swift */,
+				8C53457224FB05E8009F769B /* LogStore.swift */,
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 				8CD32693249543DE0090D0E1 /* StationListController.swift */,
@@ -359,7 +365,9 @@
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
+				8C53457524FB0748009F769B /* ContentView.swift in Sources */,
 				8CD3269F2497B22C0090D0E1 /* DataManager.swift in Sources */,
+				8C53457324FB05E8009F769B /* LogStore.swift in Sources */,
 				8CD32618249291EB0090D0E1 /* SmogLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,7 +549,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -563,7 +571,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -582,7 +590,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -601,7 +609,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};

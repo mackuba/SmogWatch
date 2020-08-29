@@ -12,9 +12,6 @@ private let MeasurementValidityTime = 3600 * 3
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
 
-    let dataStore = DataStore()
-
-
     // MARK: - Timeline Configuration
 
     func getSupportedTimeTravelDirections(
@@ -48,6 +45,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             NSLog("ComplicationController: getCurrentTimelineEntry() -> %@ n/a", "\(Date())")
         }
+
+        logStore.log(message: "returned_data for complication \(complication.family)")
 
         callback(entry)
     }

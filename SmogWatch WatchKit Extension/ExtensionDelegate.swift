@@ -15,6 +15,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
         NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
+        logStore.log(message: "app_launched")
 
         scheduleNextReload()
     }
@@ -26,7 +27,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         NSLog("ExtensionDelegate: applicationDidBecomeActive()")
 
-        dataManager.updateDataIfNeeded()
+        if let lastUpdate = logStore.logs.last?.date, Date().timeIntervalSince(lastUpdate) < 60 {
+            return
+        }
+
+        logStore.log(message: "app_activated")
     }
 
     func applicationWillResignActive() {
@@ -52,6 +57,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
                 dataManager.updateData { success in
                     NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
+                    logStore.log(message: "finished_bg_task")
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -84,14 +90,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func nextReloadTime(after date: Date) -> Date {
         let calendar = Calendar(identifier: .gregorian)
-        let targetMinutes = DateComponents(minute: 15)
+        var components = calendar.dateComponents([.minute], from: date)
+        components.minute = components.minute! / 30 * 30
 
-        // find next 15 minutes past the hour
-        var nextReloadTime = calendar.nextDate(after: date, matching: targetMinutes, matchingPolicy: .nextTime)!
+        var nextReloadTime = calendar
+                  .nextDate(after: date, matching: components, matchingPolicy: .nextTime, direction: .backward)!
+                  .addingTimeInterval(30 * 60)
 
-        // but if it's in less than 5 minutes, then skip this one and try next hour
+        // if it's in less than 5 minutes, then skip this one and try the next window
         if nextReloadTime.timeIntervalSince(date) < 5 * 60 {
-            nextReloadTime.addTimeInterval(3600)
+            nextReloadTime.addTimeInterval(30 * 60)
         }
 
         return nextReloadTime
@@ -109,6 +117,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 // contrary to what the docs say, this is called when the task is scheduled, i.e. immediately
                 NSLog("ExtensionDelegate: background task %@",
                       error == nil ? "scheduled successfully" : "NOT scheduled: \(error!)")
+                logStore.log(message: "scheduled_update for \(shortDateformatter.string(from: targetDate))")
             }
         )
     }
