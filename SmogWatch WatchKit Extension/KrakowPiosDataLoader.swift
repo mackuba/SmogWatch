@@ -86,11 +86,7 @@ class KrakowPiosDataLoader {
     }
 
     func fetchData(date: Date? = nil, _ completion: @escaping (Bool) -> ()) {
-        guard let channelId = dataStore.selectedChannelId else {
-            NSLog("KrakowPiosDataLoader: no channel selected")
-            completion(false)
-            return
-        }
+        let channelId = dataStore.selectedChannelId ?? 148
 
         let query = queryString(channelId: channelId, date: date)
         var request = URLRequest(url: URL(string: dataURL)!)
