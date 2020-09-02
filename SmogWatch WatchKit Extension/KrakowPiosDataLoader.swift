@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import os.log
 import WatchKit
 
 private let dataURL = "http://monitoring.krakow.pios.gov.pl/dane-pomiarowe/pobierz"
+private let log = OSLog(subsystem: OSLog.subsystem, category: "Data Loader")
 
 private struct Response: Decodable {
     let data: ResponseData
@@ -89,7 +91,7 @@ class KrakowPiosDataLoader {
 
     func fetchData(date: Date? = nil, _ completion: @escaping (Bool) -> ()) {
         guard let channelId = dataStore.selectedChannelId else {
-            NSLog("KrakowPiosDataLoader: no channel selected")
+            os_log("KrakowPiosDataLoader: no channel selected", log: log, type: .error)
             completion(false)
             return
         }
@@ -99,16 +101,16 @@ class KrakowPiosDataLoader {
         request.httpBody = query.data(using: .utf8)!
         request.httpMethod = "POST"
 
-        NSLog("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...",
-              WKExtension.shared().applicationState.description, dataURL, query)
+        os_log("KrakowPiosDataLoader: sending request [state: %@] to %@ with %@ ...", log: log,
+               WKExtension.shared().applicationState.description, dataURL, query)
 
         let task = session.dataTask(with: request) { (data, response, error) in
             var success = false
 
-            NSLog("KrakowPiosDataLoader: response received: %@ %@ %@",
-                  data != nil ? "\(data!.count) bytes" : "(nil)",
-                  response != nil ? "\(response!)" : "(nil)",
-                  error != nil ? "\(error!)" : "(no error)")
+            os_log("KrakowPiosDataLoader: response received: %@ %@ %@", log: log,
+                   data != nil ? "\(data!.count) bytes" : "(nil)",
+                   response != nil ? "\(response!)" : "(nil)",
+                   error != nil ? "\(error!)" : "(no error)")
 
             if let data = data {
                 if let response = try? JSONDecoder().decode(Response.self, from: data) {
@@ -120,9 +122,10 @@ class KrakowPiosDataLoader {
 
                             if date == nil {
                                 self.dataStore.lastUpdateDate = Date()
-                                NSLog("KrakowPiosDataLoader: saving data: %.0f at %@", lastPoint.value, "\(lastPoint.date)")
+                                os_log("KrakowPiosDataLoader: saving data: %.0f at %@", log: log,
+                                       lastPoint.value, "\(lastPoint.date)")
                             } else {
-                                NSLog("KrakowPiosDataLoader: added data from %@", "\(date!)")
+                                os_log("KrakowPiosDataLoader: added data from %@", log: log, "\(date!)")
                             }
 
                             success = true
@@ -132,7 +135,7 @@ class KrakowPiosDataLoader {
             }
 
             if !success {
-                NSLog("KrakowPiosDataLoader: no data found")
+                os_log("KrakowPiosDataLoader: no data found", log: log)
             }
 
             completion(success)

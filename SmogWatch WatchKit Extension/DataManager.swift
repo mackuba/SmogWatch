@@ -8,8 +8,10 @@
 
 import ClockKit
 import Foundation
+import os.log
 
 private let minimumIntervalBetweenUpdates: TimeInterval = 5 * 60
+private let log = OSLog(subsystem: OSLog.subsystem, category: "DataManager")
 
 class DataManager {
     let loader = KrakowPiosDataLoader()
@@ -27,7 +29,8 @@ class DataManager {
         if canUpdateDataNow {
             updateData()
         } else {
-            NSLog("DataManager: not loading data since it was last updated at \(dataStore.lastUpdateDate!)")
+            os_log("DataManager: not loading data since it was last updated at %@", log: log,
+                   dataStore.lastUpdateDate! as NSDate)
         }
     }
 
@@ -55,10 +58,10 @@ class DataManager {
     func reloadComplications() {
         let server = CLKComplicationServer.sharedInstance()
 
-        NSLog("DataManager: requesting reload of complications")
+        os_log("DataManager: requesting reload of complications", log: log)
 
         for complication in server.activeComplications ?? [] {
-            NSLog("- %@", complication.family.description)
+            os_log("- %@", log: log, complication.family.description)
             server.reloadTimeline(for: complication)
         }
     }

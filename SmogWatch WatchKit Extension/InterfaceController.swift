@@ -8,6 +8,7 @@
 
 import CoreLocation
 import Foundation
+import os.log
 import WatchKit
 
 class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
@@ -175,6 +176,6 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        NSLog("CLLocationManager error: %@", "\(error)")
+        os_log("CLLocationManager error: %@", log: .ui, "\(error)")
     }
 }

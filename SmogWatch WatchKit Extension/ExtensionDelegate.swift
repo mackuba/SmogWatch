@@ -6,77 +6,77 @@
 //  Copyright © 2018 Kuba Suder. Licensed under WTFPL license.
 //
 
+import os.log
 import WatchKit
-
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     let dataManager = DataManager()
 
     func applicationDidFinishLaunching() {
-        NSLog("ExtensionDelegate: applicationDidFinishLaunching() [\(WKExtension.shared().applicationState)]")
+        os_log("ExtensionDelegate: applicationDidFinishLaunching() [%@]", log: .lifecycle,
+               WKExtension.shared().applicationState.description)
 
-        scheduleNextReload()
+        scheduleNextReload(log: .lifecycle)
     }
 
     func applicationWillEnterForeground() {
-        NSLog("ExtensionDelegate: applicationWillEnterForeground()")
+        os_log("ExtensionDelegate: applicationWillEnterForeground()", log: .lifecycle)
     }
 
     func applicationDidBecomeActive() {
-        NSLog("ExtensionDelegate: applicationDidBecomeActive()")
+        os_log("ExtensionDelegate: applicationDidBecomeActive()", log: .lifecycle)
 
         dataManager.updateDataIfNeeded()
     }
 
     func applicationWillResignActive() {
-        NSLog("ExtensionDelegate: applicationWillResignActive()")
-
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, etc.
+        os_log("ExtensionDelegate: applicationWillResignActive()", log: .lifecycle)
     }
 
     func applicationDidEnterBackground() {
-        NSLog("ExtensionDelegate: applicationDidEnterBackground()")
+        os_log("ExtensionDelegate: applicationDidEnterBackground()", log: .lifecycle)
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
+
         for task in backgroundTasks {
-            // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [\(WKExtension.shared().applicationState)]")
+                os_log("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [%@]", log: .backgroundTask,
+                       WKExtension.shared().applicationState.description)
 
-                scheduleNextReload()
+                scheduleNextReload(log: .backgroundTask)
 
                 dataManager.updateData { success in
-                    NSLog("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask")
+                    os_log("ExtensionDelegate: completed WKApplicationRefreshBackgroundTask", log: .backgroundTask)
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
+
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@ [\(WKExtension.shared().applicationState)]",
-                      snapshotTask.reasonForSnapshot.description)
+                os_log("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@ [%@]", log: .backgroundTask,
+                       snapshotTask.reasonForSnapshot.description, WKExtension.shared().applicationState.description)
 
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
-                snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
+                snapshotTask.setTaskCompleted(
+                    restoredDefaultState: true,
+                    estimatedSnapshotExpiration: Date.distantFuture,
+                    userInfo: nil
+                )
+
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKWatchConnectivityRefreshBackgroundTask")
-                // Be sure to complete the connectivity task once you’re done.
+                os_log("ExtensionDelegate: received WKWatchConnectivityRefreshBackgroundTask", log: .backgroundTask)
                 connectivityTask.setTaskCompletedWithSnapshot(false)
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-                NSLog("ExtensionDelegate: received WKURLSessionRefreshBackgroundTask")
-                // Be sure to complete the URL session task once you’re done.
+                os_log("ExtensionDelegate: received WKURLSessionRefreshBackgroundTask", log: .backgroundTask)
                 urlSessionTask.setTaskCompletedWithSnapshot(false)
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
-                // Be sure to complete the relevant-shortcut task once you're done.
                 relevantShortcutTask.setTaskCompletedWithSnapshot(false)
             case let intentDidRunTask as WKIntentDidRunRefreshBackgroundTask:
-                // Be sure to complete the intent-did-run task once you're done.
                 intentDidRunTask.setTaskCompletedWithSnapshot(false)
             default:
-                NSLog("ExtensionDelegate: received unknown task")
-                // make sure to complete unhandled task types
+                os_log("ExtensionDelegate: received unknown task", log: .backgroundTask, type: .fault)
                 task.setTaskCompletedWithSnapshot(false)
             }
         }
@@ -97,18 +97,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         return nextReloadTime
     }
 
-    func scheduleNextReload() {
+    func scheduleNextReload(log: OSLog) {
         let targetDate = nextReloadTime(after: Date())
 
-        NSLog("ExtensionDelegate: scheduling next update at %@", "\(targetDate)")
+        os_log("ExtensionDelegate: scheduling next update at %@", targetDate as NSDate)
 
         WKExtension.shared().scheduleBackgroundRefresh(
             withPreferredDate: targetDate,
             userInfo: nil,
             scheduledCompletion: { error in
                 // contrary to what the docs say, this is called when the task is scheduled, i.e. immediately
-                NSLog("ExtensionDelegate: background task %@",
-                      error == nil ? "scheduled successfully" : "NOT scheduled: \(error!)")
+                os_log("ExtensionDelegate: background task %@", log: log,
+                       error == nil ? "scheduled successfully" : "NOT scheduled: \(error!)")
             }
         )
     }
