@@ -11,7 +11,7 @@ import Foundation
 import os.log
 
 private let minimumIntervalBetweenUpdates: TimeInterval = 5 * 60
-private let log = OSLog(subsystem: OSLog.subsystem, category: "DataManager")
+private let log = OSLog(subsystem: OSLog.subsystem, category: "Data Manager")
 
 class DataManager {
     let loader = KrakowPiosDataLoader()

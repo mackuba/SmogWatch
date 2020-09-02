@@ -10,7 +10,7 @@ import ClockKit
 import os.log
 
 private let MeasurementValidityTime = 3600 * 3
-private let log = OSLog(subsystem: OSLog.subsystem, category: "Complication Controller")
+private let log = OSLog(subsystem: OSLog.subsystem, category: "Complications")
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
 
