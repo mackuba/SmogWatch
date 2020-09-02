@@ -14,7 +14,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let dataManager = DataManager()
 
     func applicationDidFinishLaunching() {
-        os_log("ExtensionDelegate: applicationDidFinishLaunching() [%@]", log: .lifecycle,
+        os_log("ExtensionDelegate: applicationDidFinishLaunching() [%{public}@]", log: .lifecycle,
                WKExtension.shared().applicationState.description)
 
         scheduleNextReload(log: .lifecycle)
@@ -44,7 +44,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         for task in backgroundTasks {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                os_log("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [%@]", log: .backgroundTask,
+                os_log("ExtensionDelegate: handling WKApplicationRefreshBackgroundTask [%{public}@]",
+                       log: .backgroundTask,
                        WKExtension.shared().applicationState.description)
 
                 scheduleNextReload(log: .backgroundTask)
@@ -55,7 +56,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 }
 
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
-                os_log("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %@ [%@]", log: .backgroundTask,
+                os_log("ExtensionDelegate: received WKSnapshotRefreshBackgroundTask, reason: %{public}@ [%{public}@]",
+                       log: .backgroundTask,
                        snapshotTask.reasonForSnapshot.description, WKExtension.shared().applicationState.description)
 
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
@@ -107,7 +109,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             userInfo: nil,
             scheduledCompletion: { error in
                 // contrary to what the docs say, this is called when the task is scheduled, i.e. immediately
-                os_log("ExtensionDelegate: background task %@", log: log,
+                os_log("ExtensionDelegate: background task %{public}@", log: log,
                        error == nil ? "scheduled successfully" : "NOT scheduled: \(error!)")
             }
         )

@@ -61,7 +61,7 @@ class DataManager {
         os_log("DataManager: requesting reload of complications", log: log)
 
         for complication in server.activeComplications ?? [] {
-            os_log("- %@", log: log, complication.family.description)
+            os_log("- %{public}@", log: log, complication.family.description)
             server.reloadTimeline(for: complication)
         }
     }

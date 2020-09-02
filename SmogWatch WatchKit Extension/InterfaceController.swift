@@ -176,6 +176,6 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        os_log("CLLocationManager error: %@", log: .ui, "\(error)")
+        os_log("CLLocationManager error: %{public}@", log: .ui, "\(error)")
     }
 }
