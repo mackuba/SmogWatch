@@ -102,7 +102,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func scheduleNextReload(log: OSLog) {
         let targetDate = nextReloadTime(after: Date())
 
-        os_log("Scheduling next update at %@", targetDate as NSDate)
+        os_log("Scheduling next update at %@", log: log, targetDate as NSDate)
 
         WKExtension.shared().scheduleBackgroundRefresh(
             withPreferredDate: targetDate,

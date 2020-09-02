@@ -101,7 +101,7 @@ class KrakowPiosDataLoader {
         request.httpBody = query.data(using: .utf8)!
         request.httpMethod = "POST"
 
-        os_log("Sending request [state: %@] to %{public}@ with %{public}@ ...", log: log,
+        os_log("Sending request [state: %{public}@] to %{public}@ with %{public}@ ...", log: log,
                WKExtension.shared().applicationState.description, dataURL, query)
 
         let task = session.dataTask(with: request) { (data, response, error) in
