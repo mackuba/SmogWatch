@@ -29,8 +29,7 @@ class DataManager {
         if canUpdateDataNow {
             updateData()
         } else {
-            os_log("DataManager: not loading data since it was last updated at %@", log: log,
-                   dataStore.lastUpdateDate! as NSDate)
+            os_log("Not loading data since it was last updated at %@", log: log, dataStore.lastUpdateDate! as NSDate)
         }
     }
 
@@ -58,7 +57,7 @@ class DataManager {
     func reloadComplications() {
         let server = CLKComplicationServer.sharedInstance()
 
-        os_log("DataManager: requesting reload of complications", log: log)
+        os_log("Requesting reload of complications", log: log)
 
         for complication in server.activeComplications ?? [] {
             os_log("- %{public}@", log: log, complication.family.description)

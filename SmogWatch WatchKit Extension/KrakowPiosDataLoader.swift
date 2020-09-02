@@ -91,7 +91,7 @@ class KrakowPiosDataLoader {
 
     func fetchData(date: Date? = nil, _ completion: @escaping (Bool) -> ()) {
         guard let channelId = dataStore.selectedChannelId else {
-            os_log("KrakowPiosDataLoader: no channel selected", log: log, type: .error)
+            os_log("No channel selected", log: log, type: .error)
             completion(false)
             return
         }
@@ -101,13 +101,13 @@ class KrakowPiosDataLoader {
         request.httpBody = query.data(using: .utf8)!
         request.httpMethod = "POST"
 
-        os_log("KrakowPiosDataLoader: sending request [state: %@] to %{public}@ with %{public}@ ...", log: log,
+        os_log("Sending request [state: %@] to %{public}@ with %{public}@ ...", log: log,
                WKExtension.shared().applicationState.description, dataURL, query)
 
         let task = session.dataTask(with: request) { (data, response, error) in
             var success = false
 
-            os_log("KrakowPiosDataLoader: response received: %{public}@ %{public}@ %{public}@", log: log,
+            os_log("Response received: %{public}@ %{public}@ %{public}@", log: log,
                    data != nil ? "\(data!.count) bytes" : "(nil)",
                    response != nil ? "\(response!)" : "(nil)",
                    error != nil ? "\(error!)" : "(no error)")
@@ -122,10 +122,9 @@ class KrakowPiosDataLoader {
 
                             if date == nil {
                                 self.dataStore.lastUpdateDate = Date()
-                                os_log("KrakowPiosDataLoader: saving data: %.0f at %@", log: log,
-                                       lastPoint.value, lastPoint.date as NSDate)
+                                os_log("Saving data: %.0f at %@", log: log, lastPoint.value, lastPoint.date as NSDate)
                             } else {
-                                os_log("KrakowPiosDataLoader: added data from %@", log: log, date! as NSDate)
+                                os_log("Added data from %@", log: log, date! as NSDate)
                             }
 
                             success = true
