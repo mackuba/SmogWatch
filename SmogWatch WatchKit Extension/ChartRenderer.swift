@@ -110,4 +110,5 @@ class ChartRenderer {
 
     func hour(for point: DataPoint) -> Int {
         return Calendar.current.component(.hour, from: point.date)
-    }}
+    }
+}

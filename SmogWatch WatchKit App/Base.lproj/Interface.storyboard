@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38"/>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
     <scenes>
         <!--SmogWatch-->
@@ -59,10 +59,27 @@
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="15" bottom="15"/>
                         </group>
+                        <button alignment="left" id="CxF-rI-1Cn">
+                            <group key="contentGroup" width="1" alignment="left" layout="vertical" id="hXO-Yr-A26">
+                                <items>
+                                    <label alignment="left" text="Choose Station" id="2NK-Vh-o8E"/>
+                                    <label alignment="left" text="Kraków, os. Swoszowice" minimumScaleFactor="0.90000000000000002" id="dav-tq-c55">
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                    </label>
+                                </items>
+                                <color key="backgroundColor" red="0.1333382726" green="0.13329431410000001" blue="0.13725438710000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <edgeInsets key="margins" left="10" right="8" top="8" bottom="8"/>
+                            </group>
+                            <connections>
+                                <segue destination="LpS-dc-cFl" kind="push" identifier="ChooseStation" id="pMu-cE-gpL"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="chartView" destination="3Op-PI-IYy" id="wcI-IU-xKR"/>
                         <outlet property="gradeLabel" destination="ayl-Vh-FVA" id="4V0-P5-K8R"/>
+                        <outlet property="stationNameLabel" destination="dav-tq-c55" id="gyq-Jt-z0P"/>
                         <outlet property="updatedAtLabel" destination="BcV-HS-HbD" id="xxB-nm-wdQ"/>
                         <outlet property="updatedAtRow" destination="kL9-b5-jlL" id="3EN-Gp-Bi8"/>
                         <outlet property="valueCircle" destination="3Z8-Ca-Dh0" id="b3v-4v-TTB"/>
@@ -71,6 +88,37 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="230" y="364"/>
+        </scene>
+        <!--Station-->
+        <scene sceneID="Cgm-xI-TMV">
+            <objects>
+                <controller title="Station" id="LpS-dc-cFl" customClass="StationListController" customModule="SmogWatch_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="dVr-GI-W5A">
+                            <items>
+                                <tableRow identifier="BasicListRow" id="hW1-0r-NoD" customClass="StationListRow" customModule="SmogWatch_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="5xN-KI-22w">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="BhG-hO-GJa"/>
+                                            <label width="15" alignment="left" verticalAlignment="center" text="✓" textAlignment="right" id="eeE-rF-J5o">
+                                                <color key="textColor" red="0.39892360570000002" green="0.85720890760000001" blue="0.49007493260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="checkmark" destination="eeE-rF-J5o" id="v0D-CQ-8Ml"/>
+                                        <outlet property="titleLabel" destination="BhG-hO-GJa" id="4fO-NW-xPl"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="dVr-GI-W5A" id="eac-nY-ZNM"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="528" y="364"/>
         </scene>
     </scenes>
 </document>

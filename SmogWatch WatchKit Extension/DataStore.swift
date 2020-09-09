@@ -10,6 +10,7 @@ import Foundation
 
 private let savedPointsKey = "SavedPoints"
 private let lastUpdateDateKey = "LastUpdateDate"
+private let selectedChannelIdKey = "SelectedChannelId"
 
 private let pointsCount = 8
 
@@ -18,10 +19,36 @@ struct DataPoint {
     let value: Double
 }
 
+struct Station: Codable {
+    let channelId: Int
+    let name: String
+    let lat: Double
+    let lng: Double
+}
+
 class DataStore {
     let defaults = UserDefaults.standard
 
     static let dataLoadedNotification = Notification.Name("DataLoadedNotification")
+
+    lazy private(set) var stations: [Station] = loadStations()
+
+    var selectedChannelId: Int? {
+        get {
+            return defaults.object(forKey: selectedChannelIdKey) as? Int
+        }
+        set {
+            if newValue != selectedChannelId {
+                defaults.set(newValue, forKey: selectedChannelIdKey)
+                invalidateData()
+            }
+        }
+    }
+
+    func invalidateData() {
+        defaults.removeObject(forKey: savedPointsKey)
+        defaults.removeObject(forKey: lastUpdateDateKey)
+    }
 
     var currentLevel: Double? {
         get {
@@ -71,5 +98,12 @@ class DataStore {
         let encodedData = recentPoints.map { p in [p.date, p.value ]}
 
         defaults.set(encodedData, forKey: savedPointsKey)
+    }
+
+    private func loadStations() -> [Station] {
+        let stationsFile = Bundle.main.url(forResource: "Stations", withExtension: "plist")!
+        let data = try! Data(contentsOf: stationsFile)
+
+        return try! PropertyListDecoder().decode([Station].self, from: data)
     }
 }

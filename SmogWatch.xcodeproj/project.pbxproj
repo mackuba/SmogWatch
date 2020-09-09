@@ -26,6 +26,9 @@
 		8C4B9E8824F56B630024933A /* SmogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B9E8724F56B630024933A /* SmogLevel.swift */; };
 		8C4B9E8A24F570960024933A /* ChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B9E8924F570960024933A /* ChartRenderer.swift */; };
 		8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */; };
+		8C7EFC5425092AA100DA2401 /* Stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C7EFC5325092AA100DA2401 /* Stations.plist */; };
+		8C7EFC56250932F600DA2401 /* StationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EFC55250932F600DA2401 /* StationListController.swift */; };
+		8C7EFC582509333B00DA2401 /* StationListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EFC572509333B00DA2401 /* StationListRow.swift */; };
 		8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +100,9 @@
 		8C4B9E8724F56B630024933A /* SmogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmogLevel.swift; sourceTree = "<group>"; };
 		8C4B9E8924F570960024933A /* ChartRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRenderer.swift; sourceTree = "<group>"; };
 		8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchKitExtensions.swift; sourceTree = "<group>"; };
+		8C7EFC5325092AA100DA2401 /* Stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stations.plist; sourceTree = "<group>"; };
+		8C7EFC55250932F600DA2401 /* StationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListController.swift; sourceTree = "<group>"; };
+		8C7EFC572509333B00DA2401 /* StationListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListRow.swift; sourceTree = "<group>"; };
 		8CDC741C21D5681100D170D0 /* ComplicationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +183,9 @@
 				8C2A470421C5523C0029E4BC /* NotificationController.swift */,
 				8C2A470B21C5523C0029E4BC /* PushNotificationPayload.apns */,
 				8C4B9E8724F56B630024933A /* SmogLevel.swift */,
+				8C7EFC55250932F600DA2401 /* StationListController.swift */,
+				8C7EFC572509333B00DA2401 /* StationListRow.swift */,
+				8C7EFC5325092AA100DA2401 /* Stations.plist */,
 				8C4FAC2822012BBE001D84C6 /* WatchKitExtensions.swift */,
 			);
 			path = "SmogWatch WatchKit Extension";
@@ -304,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C2A470921C5523C0029E4BC /* Assets.xcassets in Resources */,
+				8C7EFC5425092AA100DA2401 /* Stations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,10 +337,12 @@
 				8C4B9E8A24F570960024933A /* ChartRenderer.swift in Sources */,
 				8C2A470721C5523C0029E4BC /* ComplicationController.swift in Sources */,
 				8C4FAC2922012BBE001D84C6 /* WatchKitExtensions.swift in Sources */,
+				8C7EFC56250932F600DA2401 /* StationListController.swift in Sources */,
 				8C2A470321C5523C0029E4BC /* ExtensionDelegate.swift in Sources */,
 				8C2A472421CEEAAA0029E4BC /* DataStore.swift in Sources */,
 				8CDC741D21D5681100D170D0 /* ComplicationHandler.swift in Sources */,
 				8C2A472621CEF41B0029E4BC /* KrakowPiosDataLoader.swift in Sources */,
+				8C7EFC582509333B00DA2401 /* StationListRow.swift in Sources */,
 				8C2A470121C5523C0029E4BC /* InterfaceController.swift in Sources */,
 				8C4B9E8824F56B630024933A /* SmogLevel.swift in Sources */,
 			);

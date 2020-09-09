@@ -18,6 +18,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var updatedAtLabel: WKInterfaceLabel!
     @IBOutlet var updatedAtRow: WKInterfaceGroup!
     @IBOutlet var chartView: WKInterfaceImage!
+    @IBOutlet var stationNameLabel: WKInterfaceLabel!
 
     let dataStore = DataStore()
     let dateFormatter = DateFormatter()
@@ -34,6 +35,7 @@ class InterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         
         updateDisplayedData()
+        updateStationInfo()
 
         NotificationCenter.default.addObserver(
             forName: DataStore.dataLoadedNotification,
@@ -52,6 +54,20 @@ class InterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "ChooseStation" {
+            return StationListContext(
+                items: dataStore.stations,
+                selectedId: dataStore.selectedChannelId,
+                onSelect: { station in
+                    self.setSelectedStation(station)
+                }
+            )
+        }
+
+        return nil
     }
 
     func updateDisplayedData() {
@@ -87,11 +103,33 @@ class InterfaceController: WKInterfaceController {
         }
     }
 
+    func updateStationInfo() {
+        guard let channelId = dataStore.selectedChannelId else { return }
+
+        if let station = dataStore.stations.first(where: { $0.channelId == channelId }) {
+            stationNameLabel.setText(station.name)
+        } else {
+            stationNameLabel.setText("not selected")
+        }
+    }
+
     func isSameDay(_ date: Date) -> Bool {
         let calendar = Calendar.current
         let updatedDay = calendar.component(.day, from: date)
         let currentDay = calendar.component(.day, from: Date())
 
         return updatedDay == currentDay
+    }
+
+    func setSelectedStation(_ station: Station) {
+        dataStore.selectedChannelId = station.channelId
+        stationNameLabel.setText(station.name)
+
+        updateDisplayedData()
+        gradeLabel.setText("Loading")
+
+        KrakowPiosDataLoader().fetchData { success in
+            self.updateDisplayedData()
+        }
     }
 }
