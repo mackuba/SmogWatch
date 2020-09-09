@@ -110,6 +110,30 @@
                                         <outlet property="titleLabel" destination="BhG-hO-GJa" id="4fO-NW-xPl"/>
                                     </connections>
                                 </tableRow>
+                                <tableRow identifier="ListRowWithDistance" id="b8Z-5t-BIa" customClass="StationListRow" customModule="SmogWatch_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="0.0" id="JbR-vo-f1y">
+                                        <items>
+                                            <group alignment="left" layout="vertical" id="Mwp-Nf-AHN">
+                                                <items>
+                                                    <label alignment="left" verticalAlignment="center" text="Kraków, os. Swoszowice" minimumScaleFactor="0.80000000000000004" id="OMA-TQ-aja"/>
+                                                    <label alignment="left" verticalAlignment="center" text="3.2 km" minimumScaleFactor="0.80000000000000004" id="NYg-Pj-rAJ">
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
+                                                </items>
+                                                <edgeInsets key="margins" left="0.0" right="0.0" top="3" bottom="3"/>
+                                            </group>
+                                            <label width="15" alignment="left" verticalAlignment="center" text="✓" textAlignment="right" id="O9W-T5-fL7">
+                                                <color key="textColor" red="0.39892360570000002" green="0.85720890760000001" blue="0.49007493260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="checkmark" destination="O9W-T5-fL7" id="cfa-n8-qbg"/>
+                                        <outlet property="distanceLabel" destination="NYg-Pj-rAJ" id="Zp9-Rt-DpJ"/>
+                                        <outlet property="titleLabel" destination="OMA-TQ-aja" id="paC-Gm-0dC"/>
+                                    </connections>
+                                </tableRow>
                             </items>
                         </table>
                     </items>

@@ -12,6 +12,7 @@ import Foundation
 struct StationListContext {
     let items: [Station]
     let selectedId: Int?
+    let userLocation: CLLocation?
     let onSelect: ((Station) -> ())
 }
 
@@ -29,10 +30,17 @@ class StationListController: WKInterfaceController {
         items = context.items
         selectionHandler = context.onSelect
 
-        table.setNumberOfRows(items.count, withRowType: "BasicListRow")
+        let rowType = (context.userLocation == nil) ? "BasicListRow" : "ListRowWithDistance"
+        table.setNumberOfRows(items.count, withRowType: rowType)
 
         for i in 0..<items.count {
-            listRowController(at: i).showStation(items[i])
+            let row = listRowController(at: i)
+            row.showStation(items[i])
+
+            if let location = context.userLocation {
+                let itemLocation = CLLocation(latitude: items[i].lat, longitude: items[i].lng)
+                row.setDistance(location.distance(from: itemLocation))
+            }
         }
 
         if context.selectedId != nil {

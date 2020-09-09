@@ -52,5 +52,7 @@
 	</dict>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SmogWatch uses location data to pick a station that’s closest to you.</string>
 </dict>
 </plist>
